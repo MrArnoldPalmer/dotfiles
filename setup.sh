@@ -11,3 +11,6 @@ cp ./tmux.conf ~/.tmux.conf
 
 rm ~/.zshrc
 cp ./zshrc ~/.zshrc
+
+rm ~/.p10k.zsh
+cp ./p10k.zsh ~/.p10k.zsh
