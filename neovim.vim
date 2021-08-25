@@ -114,7 +114,7 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " ctrl-p fzf
-nnoremap <C-P> :GFiles<CR>
+nnoremap <C-P> :Files<CR>
 
 " navigate windows from all pane types
 :tnoremap <A-h> <C-\><C-N><C-w>h
