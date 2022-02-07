@@ -14,7 +14,8 @@ Plug 'bling/vim-airline' | Plug 'airblade/vim-gitgutter' | Plug 'edkolev/tmuxlin
 
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } | Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -71,6 +72,7 @@ set undofile
 
 " Toggle NERDTree w/ F4
 nnoremap <F4> :NERDTreeToggle<CR>
+nnoremap <F4> <cmd>CHADopen<cr>
 
 let g:ale_linters = {
 \   'javascript': ['eslint'],
