@@ -73,6 +73,7 @@ export NVM_DIR="$HOME/.nvm"
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home"
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 
 # Go
 export GOPATH="$HOME/go"

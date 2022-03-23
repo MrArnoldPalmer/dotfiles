@@ -32,6 +32,8 @@ Plug 'HerringtonDarkholme/yats.vim/', { 'for': 'typescript' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'keith/swift.vim', { 'for': 'swift' }
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -86,6 +88,9 @@ let g:ale_rust_rls_config = {
 \     'clippy_preference': 'on'
 \   }
 \ }
+
+" do not close the markdown preview tab when switching to other buffers
+let g:mkdp_auto_close = 0
 
 " CoC Config
 set hidden
