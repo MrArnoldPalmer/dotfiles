@@ -10,12 +10,12 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-surround'
 
-Plug 'bling/vim-airline' | Plug 'airblade/vim-gitgutter' | Plug 'edkolev/tmuxline.vim'
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
 Plug 'editorconfig/editorconfig-vim'
-
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -24,19 +24,30 @@ Plug 'edkolev/tmuxline.vim'
 
 Plug 'tpope/vim-commentary'
 
-Plug 'mhartington/oceanic-next'
+" Themes
+Plug 'marko-cerovac/material.nvim'
 
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'HerringtonDarkholme/yats.vim/', { 'for': 'typescript' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'keith/swift.vim', { 'for': 'swift' }
+Plug 'cstrahan/vim-capnp', { 'for': 'capnp' }
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+" Automatically install plugins on startup
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
+" Use dedicated virtualenv for neovim
+let g:python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
 
 set background=dark
 set expandtab
@@ -47,6 +58,7 @@ set clipboard+=unnamedplus
 set autoread
 set statusline+=%#warningmsg#
 set statusline+=%*
+set mouse=a
 
 " Theme
 if (has("termguicolors"))
@@ -54,12 +66,11 @@ if (has("termguicolors"))
 endif
 syntax enable
 
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-colorscheme OceanicNext
+let g:material_style = "palenight"
+colorscheme material
 
 " Airline theme
-let g:airline_theme='oceanicnext'
+" let g:airline_theme='oceanicnext'
 let g:airline_powerline_fonts=1
 let g:jsx_ext_required = 0
 
@@ -72,9 +83,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 set undodir=~/.config/vim/undodir
 set undofile
 
-" Toggle NERDTree w/ F4
-nnoremap <F4> :NERDTreeToggle<CR>
-nnoremap <F4> <cmd>CHADopen<cr>
+nnoremap <F4> :NvimTreeToggle<CR>
 
 let g:ale_linters = {
 \   'javascript': ['eslint'],
@@ -286,3 +295,5 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+lua require('setup')
