@@ -19,28 +19,17 @@ if [[ ! -d ~/.config/nvim ]]; then
   mkdir ~/.config/nvim
 fi
 
-if [[ ! -d ~/.config/nvim/lua ]]; then
-  echo "nvim lua dir doesn't exist, make it!"
-  mkdir ~/.config/nvim/lua
-fi
-
 if [[ -e ~/.config/nvim/init.vim ]]; then
   echo "nvim config exists, remove it!"
   rm ~/.config/nvim/init.vim
 fi
 ln -sv $SCRIPT_DIR/neovim.vim ~/.config/nvim/init.vim
 
-if [[ -e ~/.config/nvim/lua/setup.lua ]]; then
-  echo "nvim lua config exists, remove it!"
-  rm ~/.config/nvim/lua/setup.lua
+if [[ ! -d ~/.config/nvim/lua ]]; then
+  echo "nvim lua dir exists, remove it"
+  rm -rf ~/.config/nvim/lua
 fi
-ln -sv $SCRIPT_DIR/neovim.lua ~/.config/nvim/lua/setup.lua
-
-if [[ -e ~/.config/nvim/lua/feline-init.lua ]]; then
-  echo "nvim lua config exists, remove it!"
-  rm ~/.config/nvim/lua/feline-init.lua
-fi
-ln -sv $SCRIPT_DIR/feline/init.lua ~/.config/nvim/lua/feline-init.lua
+ln -sv $SCRIPT_DIR/lua ~/.config/nvim
 
 ## Tmux
 if [[ -e ~/.tmux.conf ]]; then
