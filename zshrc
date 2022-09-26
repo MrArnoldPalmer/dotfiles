@@ -26,7 +26,6 @@ fi
 # alias h="htop"
 
 export ZSH_CUSTOM="$HOME/.zsh"
-export TERM="xterm-256color"
 
 # Show OS info when opening a new terminal
 # neofetch

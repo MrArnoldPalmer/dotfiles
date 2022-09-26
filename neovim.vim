@@ -16,30 +16,32 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
 Plug 'editorconfig/editorconfig-vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Fuzzy finder
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'edkolev/tmuxline.vim'
 
 Plug 'tpope/vim-commentary'
 
-" Themes
-Plug 'marko-cerovac/material.nvim'
-
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'HerringtonDarkholme/yats.vim/', { 'for': 'typescript' }
-Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'keith/swift.vim', { 'for': 'swift' }
-Plug 'cstrahan/vim-capnp', { 'for': 'capnp' }
-
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
-" Plug 'dense-analysis/ale'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'neovim/nvim-lspconfig'
+" Completion framework
+Plug 'hrsh7th/nvim-cmp'
+" LSP completion source for nvim-cmp
+Plug 'hrsh7th/cmp-nvim-lsp'
+" Other usefull completion sources
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-buffer'
+" Snippet engine
+Plug 'hrsh7th/vim-vsnip'
+
+" Themes
+Plug 'marko-cerovac/material.nvim'
 call plug#end()
 
 " Automatically install plugins on startup
@@ -89,25 +91,11 @@ nnoremap <F4> :NvimTreeToggle<CR>
 
 " disable f1 help
 nmap <F1> <nop>
-
-" fzf config
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-" ctrl-p fzf
-nnoremap <C-P> :Files<CR>
+" Telescope
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " navigate windows from all pane types
 :tnoremap <A-h> <C-\><C-N><C-w>h
@@ -122,5 +110,15 @@ nnoremap <C-P> :Files<CR>
 :nnoremap <A-j> <C-w>j
 :nnoremap <A-k> <C-w>k
 :nnoremap <A-l> <C-w>l
+
+" Set completeopt to have a better completion experience
+" :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing extra messages when using completion
+set shortmess+=c
 
 lua require('setup')
