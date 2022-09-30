@@ -42,6 +42,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 " Snippet engine
 Plug 'L3MON4D3/LuaSnip'
+" Better error message display
+Plug 'folke/trouble.nvim'
 
 " Themes
 Plug 'marko-cerovac/material.nvim'
