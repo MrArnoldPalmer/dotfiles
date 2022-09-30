@@ -1,70 +1,82 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 ## Alacritty
-if [[ ! -d ~/.config/alacritty ]]; then
+ALACRITTY_DIR=~/.config/alacritty
+ALACRITTY_CONFIG=${ALACRITTY_DIR}/alacritty.yml
+if [[ ! -d $ALACRITTY_DIR ]]; then
   echo "alacritty dir doesn't exist, make it!"
-  mkdir ~/.config/alacritty
+  mkdir $ALACRITTY_DIR
 fi
 
-if [[ -e ~/.config/alacritty/alacritty.yml ]]; then
+if [[ -e $ALACRITTY_CONFIG ]]; then
   echo "alacritty config exists, remove it!"
-  rm ~/.config/alacritty/alacritty.yml
+  rm $ALACRITTY_CONFIG
 fi
-ln -sv $SCRIPT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -sv $SCRIPT_DIR/alacritty.yml $ALACRITTY_CONFIG
 
 ## Nushell
-if [[ ! -d ~/.config/nushell ]]; then
+NUSHELL_DIR=~/.config/nushell
+NUSHELL_CONFIG=${NUSHELL_DIR}/config.nu
+NUSHELL_ENV_CONFIG=${NUSHELL_DIR}/env.nu
+if [[ ! -d $NUSHELL_DIR ]]; then
   echo "nushell dir doesn't exist, make it!"
-  mkdir ~/.config/nushell
+  mkdir $NUSHELL_DIR
 fi
 
-if [[ -e ~/.config/nushell/config.nu ]]; then
+if [[ -e $NUSHELL_CONFIG ]]; then
   echo "nu config exists, remove it!"
-  rm ~/.config/nushell/config.nu
+  rm $NUSHELL_CONFIG
 fi
-ln -sv $SCRIPT_DIR/nu/config.nu ~/.config/nushell/config.nu
+ln -sv $SCRIPT_DIR/nu/config.nu $NUSHELL_CONFIG
 
-if [[ -e ~/.config/nushell/env.nu ]]; then
+if [[ -e $NUSHELL_ENV_CONFIG ]]; then
   echo "nu env config exists, remove it!"
-  rm ~/.config/nushell/env.nu
+  rm $NUSHELL_ENV_CONFIG
 fi
-ln -sv $SCRIPT_DIR/nu/env.nu ~/.config/nushell/env.nu
+ln -sv $SCRIPT_DIR/nu/env.nu $NUSHELL_ENV_CONFIG
 
 ## Neovim
-if [[ ! -d ~/.config/nvim ]]; then
+NVIM_DIR=~/.config/nvim
+NVIM_LUA_DIR=${NVIM_DIR}/lua
+NVIM_CONFIG=${NVIM_DIR}/init.vim
+if [[ ! -d $NVIM_DIR ]]; then
   echo "nvim dir doesn't exist, make it!"
-  mkdir ~/.config/nvim
+  mkdir $NVIM_DIR
 fi
 
-if [[ -e ~/.config/nvim/init.vim ]]; then
+if [[ -e $NVIM_CONFIG ]]; then
   echo "nvim config exists, remove it!"
-  rm ~/.config/nvim/init.vim
+  rm $NVIM_CONFIG
 fi
-ln -sv $SCRIPT_DIR/neovim.vim ~/.config/nvim/init.vim
+ln -sv $SCRIPT_DIR/neovim.vim $NVIM_CONFIG
 
-if [[ ! -d ~/.config/nvim/lua ]]; then
+if [[ -d $NVIM_LUA_DIR ]]; then
   echo "nvim lua dir exists, remove it"
-  rm -rf ~/.config/nvim/lua
+  rm -rf $NVIM_LUA_DIR
 fi
-ln -sv $SCRIPT_DIR/lua ~/.config/nvim
+ln -sv $SCRIPT_DIR/lua $NVIM_DIR
 
 ## Tmux
-if [[ -e ~/.tmux.conf ]]; then
+TMUX_CONFIG=~/.tmux.conf
+if [[ -e $TMUX_CONFIG ]]; then
   echo "tmux config exists, remove it!"
-  rm ~/.tmux.conf
+  rm $TMUX_CONFIG
 fi
-ln -sv $SCRIPT_DIR/tmux.conf ~/.tmux.conf
+ln -sv $SCRIPT_DIR/tmux.conf $TMUX_CONFIG
 
 ## ZSH
-if [[ -e ~/.zshrc ]]; then
+ZSH_CONFIG=~/.zshrc
+P10K_CONFIG=~/.p10k.zsh
+if [[ -e $ZSH_CONFIG ]]; then
   echo "zsh config exists, remove it!"
-  rm ~/.zshrc
+  rm $ZSH_CONFIG
 fi
-ln -sv $SCRIPT_DIR/zshrc ~/.zshrc
+ln -sv $SCRIPT_DIR/zshrc $ZSH_CONFIG
 
-if [[ -e ~/.p10k.zsh ]]; then
+if [[ -e $P10K_CONFIG ]]; then
   echo "p10k config exists, remove it!"
-  rm ~/.p10k.zsh
+  rm $P10K_CONFIG
 fi
-ln -sv $SCRIPT_DIR/p10k.zsh ~/.p10k.zsh
+ln -sv $SCRIPT_DIR/p10k.zsh $P10K_CONFIG
