@@ -13,6 +13,24 @@ if [[ -e ~/.config/alacritty/alacritty.yml ]]; then
 fi
 ln -sv $SCRIPT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
 
+## Nushell
+if [[ ! -d ~/.config/nushell ]]; then
+  echo "nushell dir doesn't exist, make it!"
+  mkdir ~/.config/nushell
+fi
+
+if [[ -e ~/.config/nushell/config.nu ]]; then
+  echo "nu config exists, remove it!"
+  rm ~/.config/nushell/config.nu
+fi
+ln -sv $SCRIPT_DIR/nu/config.nu ~/.config/nushell/config.nu
+
+if [[ -e ~/.config/nushell/env.nu ]]; then
+  echo "nu env config exists, remove it!"
+  rm ~/.config/nushell/env.nu
+fi
+ln -sv $SCRIPT_DIR/nu/env.nu ~/.config/nushell/env.nu
+
 ## Neovim
 if [[ ! -d ~/.config/nvim ]]; then
   echo "nvim dir doesn't exist, make it!"
