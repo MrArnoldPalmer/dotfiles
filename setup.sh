@@ -37,24 +37,6 @@ if [[ -e $NUSHELL_ENV_CONFIG ]]; then
 fi
 ln -sv $SCRIPT_DIR/nu/env.nu $NUSHELL_ENV_CONFIG
 
-## Nushell
-if [[ ! -d ~/.config/nushell ]]; then
-  echo "nushell dir doesn't exist, make it!"
-  mkdir ~/.config/nushell
-fi
-
-if [[ -e ~/.config/nushell/config.nu ]]; then
-  echo "nu config exists, remove it!"
-  rm ~/.config/nushell/config.nu
-fi
-ln -sv $SCRIPT_DIR/nu/config.nu ~/.config/nushell/config.nu
-
-if [[ -e ~/.config/nushell/env.nu ]]; then
-  echo "nu env config exists, remove it!"
-  rm ~/.config/nushell/env.nu
-fi
-ln -sv $SCRIPT_DIR/nu/env.nu ~/.config/nushell/env.nu
-
 ## Neovim
 NVIM_DIR=~/.config/nvim
 NVIM_LUA_DIR=${NVIM_DIR}/lua
