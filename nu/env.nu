@@ -68,6 +68,7 @@ let-env PYENV_ROOT = $'($env.HOME)/.pyenv'
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 # Brew setup
+let-env PATH = ($env.PATH | prepend '/usr/local/bin')
 let-env PATH = ($env.PATH | prepend '/home/linuxbrew/.linuxbrew/bin')
 # Local bin to path
 let-env PATH = ($env.PATH | append $'($env.HOME)/.bin')
