@@ -650,4 +650,4 @@ theme: tokyo-night-storm
 #copy_on_select: true
 
 # Path to the default editor to use to edit pane scrollbuffer
-# scrollback_editor: /usr/bin/nano
+scrollback_editor: nvim
