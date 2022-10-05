@@ -66,6 +66,20 @@ if [[ -e $TMUX_CONFIG ]]; then
 fi
 ln -sv $SCRIPT_DIR/tmux.conf $TMUX_CONFIG
 
+## Zellij
+ZELLIJ_DIR=~/.config/zellij
+ZELLIJ_CONFIG=$ZELLIJ_DIR/config.yaml
+if [[ ! -d $ZELLIJ_DIR ]]; then
+  echo "zellij dir doesn't exist, make it!"
+  mkdir $ZELLIJ_DIR
+fi
+
+if [[ -e $ZELLIJ_CONFIG ]]; then
+  echo "zellij config exists, remove it!"
+  rm $ZELLIJ_CONFIG
+fi
+ln -sv $SCRIPT_DIR/zellij $ZELLIJ_CONFIG
+
 ## ZSH
 ZSH_CONFIG=~/.zshrc
 P10K_CONFIG=~/.p10k.zsh
