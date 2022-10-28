@@ -68,7 +68,7 @@ ln -sv $SCRIPT_DIR/tmux.conf $TMUX_CONFIG
 
 ## Zellij
 ZELLIJ_DIR=~/.config/zellij
-ZELLIJ_CONFIG=${ZELLIJ_DIR}/config.yaml
+ZELLIJ_CONFIG=${ZELLIJ_DIR}/config.kdl
 if [[ ! -d $ZELLIJ_DIR ]]; then
   echo "zellij dir doesn't exist, make it!"
   mkdir $ZELLIJ_DIR
@@ -78,7 +78,7 @@ if [[ -e $ZELLIJ_CONFIG ]]; then
   echo "zellij config exists, remove it!"
   rm $ZELLIJ_CONFIG
 fi
-ln -sv $SCRIPT_DIR/zellij.yml $ZELLIJ_CONFIG
+ln -sv $SCRIPT_DIR/zellij.kdl $ZELLIJ_CONFIG
 
 ## ZSH
 ZSH_CONFIG=~/.zshrc
