@@ -259,7 +259,8 @@ let-env config = {
   sync_history_on_enter: true # Enable to share the history between multiple sessions, else you have to close the session to persist history to file
   history_file_format: "plaintext" # "sqlite" or "plaintext"
   shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
-  disable_table_indexes: false # set to true to remove the index column from tables
+  # disable_table_indexes: false # set to true to remove the index column from tables
+  table_index_mode: auto
   cd_with_abbreviations: false # set to true to allow you to do things like cd s/o/f and nushell expand it to cd some/other/folder
   case_sensitive_completions: false # set to true to enable case-sensitive completions
   enable_external_completion: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
@@ -515,9 +516,35 @@ let-env config = {
 alias vim = nvim
 alias up = ~/dev/aws-cdk/scripts/buildup
 alias down = ~/dev/aws-cdk/scripts/builddown
+alias foreach =  ~/dev/aws-cdk/scripts/foreach.sh
 alias cat = bat
 
 # Load FNM
 load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" && name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 
+# PyEnv
+
+let-env PATH = ($env.PATH | append $"($env.HOME)/.pyenv/bin")
+let-env PATH = ($env.PATH | append $"($env.HOME)/.pyenv/shims")
+
+# replicate pyenv init - | source
+let-env PYENV_VERSION = ""
+let-env PYENV_VERSION_OLD = ""
+let-env PYENV_SHELL = "nu"
+
+def-env pyenv [command, ...args] {
+    let newenv = if $command in ["activate", "deactivate", "rehash", "shell"] {
+        if $command == "shell" {
+            { PYENV_VERSION_OLD: $env.PYENV_VERSION PYENV_VERSION: $args.0 }
+        } else {
+            error make { msg: $"`($command)` command is not supported yet" }
+        }
+    } else {
+        ^pyenv $command $args
+        {}
+    }
+    load-env $newenv
+}
+
+# Starship Prompt
 source ~/.cache/starship/init.nu

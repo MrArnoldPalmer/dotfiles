@@ -63,7 +63,7 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 set number
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 set autoread
 set statusline+=%#warningmsg#
 set statusline+=%*

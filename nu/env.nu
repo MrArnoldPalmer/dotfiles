@@ -64,6 +64,7 @@ let-env EDITOR = 'nvim'
 # Misc vars
 let-env GOPATH = $'($env.HOME)/go'
 let-env PYENV_ROOT = $'($env.HOME)/.pyenv'
+let-env JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
@@ -82,7 +83,13 @@ let-env PATH = ($env.PATH | append $'($env.HOME)/.cargo/bin')
 let-env PATH = ($env.PATH | append $'($env.HOME)/.fnm')
 load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" && name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
 let-env PATH = ($env.PATH | append $'($env.FNM_MULTISHELL_PATH)/bin')
+# Wasmer
+let-env WASMER_DIR = "/home/mitchellvaline/.wasmer"
+let-env WASMER_CACHE_DIR = $'($env.WASMER_DIR)/cache'
+let-env PATH = ($env.PATH | append $'($env.WASMER_DIR)/globals/wapm/packages/.bin') 
 
 # Enable starship prompt
 mkdir ~/.cache/starship
-starship init nu | save ~/.cache/starship/init.nu
+# https://github.com/starship/starship/issues/4507
+starship init nu | sed "s/size -c/size/" | save ~/.cache/starship/init.nu
+# starship init nu | save ~/.cache/starship/init.nu
