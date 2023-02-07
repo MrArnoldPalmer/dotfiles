@@ -33,6 +33,7 @@ Plug 'tpope/vim-commentary'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 " Completion framework
 Plug 'hrsh7th/nvim-cmp'
 " LSP completion source for nvim-cmp
@@ -46,7 +47,8 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'folke/trouble.nvim'
 
 " Themes
-Plug 'marko-cerovac/material.nvim'
+" Plug 'marko-cerovac/material.nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
 
 " Automatically install plugins on startup
@@ -75,13 +77,9 @@ if (has("termguicolors"))
 endif
 syntax enable
 
-let g:material_style = "palenight"
-colorscheme material
-
-" Airline theme
-" let g:airline_theme='oceanicnext'
-let g:airline_powerline_fonts=1
-let g:jsx_ext_required = 0
+" let g:material_style = "palenight"
+" colorscheme material
+colorscheme tokyonight-storm
 
 " Airline top tab/buffer bar
 let g:airline#extensions#tabline#enabled=1

@@ -48,7 +48,7 @@ window:
   #     - none: Neither borders nor title bar
   #     - buttonless: Title bar, transparent background and title bar buttons
   #     - transparent: Title bar, transparent background, but no title bar buttons
-  decorations: full
+  decorations: none
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -446,7 +446,8 @@ schemes:
     # Default colors
     primary:
       background: '0x24283b'
-      foreground: '0xa9b1d6'
+      # foreground: '0xa9b1d6'
+      foreground: '0xFFFFFF'
 
     # Normal colors
     normal:
