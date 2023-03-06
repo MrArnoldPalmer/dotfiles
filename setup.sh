@@ -82,15 +82,8 @@ ln -sv $SCRIPT_DIR/zellij.kdl $ZELLIJ_CONFIG
 
 ## ZSH
 ZSH_CONFIG=~/.zshrc
-P10K_CONFIG=~/.p10k.zsh
 if [[ -e $ZSH_CONFIG ]]; then
   echo "zsh config exists, remove it!"
   rm $ZSH_CONFIG
 fi
 ln -sv $SCRIPT_DIR/zshrc $ZSH_CONFIG
-
-if [[ -e $P10K_CONFIG ]]; then
-  echo "p10k config exists, remove it!"
-  rm $P10K_CONFIG
-fi
-ln -sv $SCRIPT_DIR/p10k.zsh $P10K_CONFIG

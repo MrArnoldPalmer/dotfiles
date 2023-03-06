@@ -1,9 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 #  _____    _
 # |__  /___| |__  _ __ ___
@@ -26,33 +20,6 @@ fi
 # alias h="htop"
 
 export ZSH_CUSTOM="$HOME/.zsh"
-
-# Show OS info when opening a new terminal
-# neofetch
-
-# Font mode for powerlevel9k
-# POWERLEVEL9K_MODE="nerdfont-complete"
-
-# Prompt elements
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_user dir)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs aws)
-
-# Set name of the theme to load.
-# ZSH_THEME="powerlevel9k/powerlevel9k"
-# source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
-
-
-# User with skull
-# user_with_skull() {
-#     echo -n " $(whoami)"
-# }
-
-# POWERLEVEL9K_CUSTOM_USER="user_with_skull"
-
-# PowerLevel10K
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -96,6 +63,9 @@ alias vim="nvim"
 alias vimdiff="nvim -d"
 export EDITOR=nvim
 
+alias zj="zellij"
+alias docker="finch"
+
 # CDK Aliases
 # runs an npm script via lerna for a the current module
 alias lr='lerna run --stream --scope $(node -p "require(\"./package.json\").name")'
@@ -122,3 +92,7 @@ fixZsh() {
 		sudo chmod -R 755 $f
 	done
 }
+
+# Tell CDK to use finch because I said so
+export CDK_DOCKER=finch
+eval "$(starship init zsh)"
