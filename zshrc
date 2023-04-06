@@ -7,9 +7,12 @@ export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$HOME/.local/bin"
 
 if [[ -d "/home/linuxbrew/.linuxbrew" ]]; then
-  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+  export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+else
+  export HOMEBREW_PREFIX="/usr/local/Cellar"
 fi
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
@@ -17,8 +20,11 @@ export PATH=$HOME/.toolbox/bin:$PATH
 
 # NVM Configuration
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [[ ! -d $NVM_DIR ]]; then
+  mkdir $NVM_DIR
+fi
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 # Java 8
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home"

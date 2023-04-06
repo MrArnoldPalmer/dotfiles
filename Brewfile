@@ -34,4 +34,3 @@ brew "urlview"
 brew "watchman"
 brew "zellij"
 brew "finch" if OS.mac?
-brew "docker" if OS.linux?
