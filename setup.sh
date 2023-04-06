@@ -87,3 +87,11 @@ if [[ -e $ZSH_CONFIG ]]; then
   rm $ZSH_CONFIG
 fi
 ln -sv $SCRIPT_DIR/zshrc $ZSH_CONFIG
+
+## Starship
+STARSHIP_CONFIG=~/.config/starship.toml
+if [[ -e $STARSHIP_CONFIG ]]; then
+  echo "starship config exists, remove it!"
+  rm $STARSHIP_CONFIG
+fi
+ln -sv $SCRIPT_DIR/starship.toml $STARSHIP_CONFIG

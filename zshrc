@@ -27,6 +27,11 @@ export ZSH_CUSTOM="$HOME/.zsh"
 export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$HOME/.local/bin"
 
+if [[ -d "/home/linuxbrew/.linuxbrew" ]]; then
+  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+fi
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=$HOME/.toolbox/bin:$PATH
@@ -64,7 +69,10 @@ alias vimdiff="nvim -d"
 export EDITOR=nvim
 
 alias zj="zellij"
-alias docker="finch"
+
+if [[ `uname` == "Darwin" ]]; then
+  alias docker="finch"
+fi
 
 # CDK Aliases
 # runs an npm script via lerna for a the current module
