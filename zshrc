@@ -1,24 +1,3 @@
-
-#  _____    _
-# |__  /___| |__  _ __ ___
-#   / // __| '_ \| '__/ __|
-#  / /_\__ \ | | | | | (__
-# /____|___/_| |_|_|  \___|
-
-# Aliases for a few useful commands
-# alias mirrorUpdate="sudo reflector --latest 250 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
-# alias yaourt="yaourt --pager --color"
-# alias pacmanGhost="~/.pacman.sh"
-# alias shivita="toilet -f mono12 -F rainbow 'andrea' | ponythink -f winona"
-# alias emacs="emacs -nw"
-# alias cat="bat"
-# alias ls="colorls"
-# alias ip="ip -c"
-# alias rm="rm -i"
-# alias x="ranger"
-# alias c="cmus"
-# alias h="htop"
-
 export ZSH_CUSTOM="$HOME/.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
