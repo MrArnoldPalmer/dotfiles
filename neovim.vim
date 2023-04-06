@@ -125,3 +125,22 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 lua require('setup')
+
+" Set clipboard on WSL
+let uname = substitute(system('uname'),'\n','','')
+if uname == 'Linux'
+    if system('$PATH')=~ '/mnt/c/WINDOWS'
+      let g:clipboard = {
+      \   'name': 'WslClipboard',
+      \   'copy': {
+      \      '+': 'clip.exe',
+      \      '*': 'clip.exe',
+      \    },
+      \   'paste': {
+      \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      \   },
+      \   'cache_enabled': 0,
+      \ }
+    endif
+endif
