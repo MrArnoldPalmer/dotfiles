@@ -9,7 +9,7 @@ export PATH="$PATH:$HOME/.local/bin"
 if [[ -d "/home/linuxbrew/.linuxbrew" ]]; then
   export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 else
-  export HOMEBREW_PREFIX="/usr/local/Cellar"
+  export HOMEBREW_PREFIX="/opt/homebrew"
 fi
 export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
