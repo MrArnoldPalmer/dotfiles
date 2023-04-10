@@ -34,3 +34,4 @@ brew "urlview"
 brew "watchman"
 brew "zellij"
 cask "finch" if OS.mac?
+cask "alacritty" if OS.mac?

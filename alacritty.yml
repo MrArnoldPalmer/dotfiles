@@ -81,19 +81,19 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: MesloLGS NF
+    family: Fira Code
     # The `style` can be specified to pick a specific face.
     style: Regular
 
   # Italic font face
   bold:
-    family: MesloLGS NF
+    family: Fira Code
     # The `style` can be specified to pick a specific face.
     style: Bold
 
   # Italic font face
   italic:
-    family: MesloLGS NF
+    family: Fira Code
     # The `style` can be specified to pick a specific face.
     style: Italic
 
@@ -224,7 +224,7 @@ live_config_reload: true
 # Entries in `shell.args` are passed unmodified as arguments to the shell.
 #
 shell:
-  program: /usr/local/bin/zsh
+  program: /bin/zsh
   args:
     - --login
 
