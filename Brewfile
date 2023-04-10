@@ -33,4 +33,4 @@ brew "tmux"
 brew "urlview"
 brew "watchman"
 brew "zellij"
-brew "finch" if OS.mac?
+cask "finch" if OS.mac?
