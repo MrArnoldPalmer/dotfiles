@@ -36,5 +36,6 @@ brew "watchman"
 brew "zellij"
 cask "finch" if OS.mac?
 cask "alacritty" if OS.mac?
+cask "rectangle" if OS.mac?
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
