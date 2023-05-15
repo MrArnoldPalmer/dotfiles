@@ -39,24 +39,23 @@ ln -sv $SCRIPT_DIR/nu/env.nu $NUSHELL_ENV_CONFIG
 
 ## Neovim
 NVIM_DIR=~/.config/nvim
-NVIM_LUA_DIR=${NVIM_DIR}/lua
-NVIM_CONFIG=${NVIM_DIR}/init.vim
-if [[ ! -d $NVIM_DIR ]]; then
-  echo "nvim dir doesn't exist, make it!"
-  mkdir $NVIM_DIR
+NVIM_CACHE_DIR=~/.local/share/nvim
+if [[ -d $NVIM_DIR ]]; then
+  echo "neovim dir exists, remove it!"
+  rm -rf $NVIM_DIR
 fi
-
-if [[ -e $NVIM_CONFIG ]]; then
-  echo "nvim config exists, remove it!"
-  rm $NVIM_CONFIG
+if [[ -d $NVIM_CACHE_DIR ]]; then
+  echo "neovim cache dir exists, remove it!"
+  rm -rf $NVIM_CACHE_DIR
 fi
-ln -sv $SCRIPT_DIR/neovim.vim $NVIM_CONFIG
+git clone https://github.com/NvChad/NvChad $NVIM_DIR --depth 1 && nvim
 
+NVIM_LUA_DIR=${NVIM_DIR}/lua/custom
 if [[ -d $NVIM_LUA_DIR ]]; then
-  echo "nvim lua dir exists, remove it"
+  echo "neovim lua dir exists, removing it"
   rm -rf $NVIM_LUA_DIR
 fi
-ln -sv $SCRIPT_DIR/lua $NVIM_DIR
+ln -sv $SCRIPT_DIR/lua $NVIM_LUA_DIR
 
 ## Tmux
 TMUX_CONFIG=~/.tmux.conf
