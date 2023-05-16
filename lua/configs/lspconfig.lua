@@ -9,3 +9,10 @@ lspconfig.rust_analyzer.setup({
   filetypes = {"rust"},
   root_dir = lspconfig.util.root_pattern("Cargo.toml"),
 })
+
+lspconfig.tsserver.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {"typescript"},
+  root_dir = lspconfig.util.root_pattern("tsconfig.json"),
+})
