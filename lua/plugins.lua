@@ -62,6 +62,9 @@ local plugins = {
 			},
 		},
 	},
+  {
+    "folke/trouble.nvim",
+  }
 }
 
 return plugins
