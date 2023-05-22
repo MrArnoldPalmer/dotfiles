@@ -1,8 +1,6 @@
 local dap = require("dap")
-local dapui = require("dapui")
-local mason_registry = require("mason-registry")
-local codelldb = mason_registry.get_package("codelldb")
-local cargo_inspector = require("custom.configs.cargo-inspector")
+-- local dapui = require("dapui")
+local cargo_inspector = require("custom.utils.cargo-inspector")
 
 dap.adapters.lldb = {
 	type = "server",
@@ -26,13 +24,13 @@ if vim.fn.filereadable(".vscode/launch.json") then
 	})
 end
 
-dapui.setup()
-dap.listeners.after.event_initialized["dapui_config"] = function()
-	dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-	dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-	dapui.close()
-end
+-- dapui.setup()
+-- dap.listeners.after.event_initialized["dapui_config"] = function()
+-- 	dapui.open()
+-- end
+-- dap.listeners.before.event_terminated["dapui_config"] = function()
+-- 	dapui.close()
+-- end
+-- dap.listeners.before.event_exited["dapui_config"] = function()
+-- 	dapui.close()
+-- end
