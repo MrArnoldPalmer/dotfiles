@@ -2,21 +2,6 @@ local continue = require("custom.utils.continue")
 
 local M = {}
 
-local function table_merge(t1, t2)
-	for k, v in pairs(t2) do
-		if type(v) == "table" then
-			if type(t1[k] or false) == "table" then
-				table_merge(t1[k] or {}, t2[k] or {})
-			else
-				t1[k] = v
-			end
-		else
-			t1[k] = v
-		end
-	end
-	return t1
-end
-
 M.disabled = {
 	n = {
 		["<Leader>b"] = "",
@@ -42,7 +27,7 @@ local dap_n_and_v = {
 }
 
 M.dap = {
-	n = table_merge({
+	n = vim.tbl_deep_extend("error", {
 		["<F5>"] = {
 			continue,
 			"Launch Debugger",
@@ -110,15 +95,22 @@ M.dap = {
 			"Debugger Show Scopes",
 		},
 	}, dap_n_and_v),
-	v = table_merge({}, dap_n_and_v),
+	v = vim.tbl_deep_extend("error", {}, dap_n_and_v),
 }
 
 M.lspconfig = {
 	n = {
 		["gh"] = {
-			"<cmd>Lspsaga lsp_finder<CR>",
+      function()
+        vim.cmd("Lspsaga lsp_finder")
+      end,
 			"LSP finder",
 		},
+    ["<leader>o"] = {
+      function()
+        vim.cmd("Lspsaga outline")
+      end
+    },
 	},
 }
 

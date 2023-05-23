@@ -6,13 +6,17 @@ local plugins = {
 				"vim",
 				"lua",
 				"rust",
+				"toml",
 				"typescript",
 				"javascript",
 				"markdown",
 				"markdown_inline",
 				"json",
 				"go",
+				"gomod",
 				"java",
+				"dockerfile",
+				"python",
 			},
 		},
 	},
@@ -66,14 +70,7 @@ local plugins = {
 		"glepnir/lspsaga.nvim",
 		event = "LspAttach",
 		config = function()
-			require("lspsaga").setup({
-				finder = {
-					keys = {
-						vsplit = "<C-v>",
-						split = "<C-x>",
-					},
-				},
-			})
+      require("custom.configs.lspsaga")
 		end,
 	},
 }
