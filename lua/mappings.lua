@@ -97,20 +97,29 @@ M.dap = {
 		},
 		["<Leader>df"] = {
 			function()
-        local widgets = require("dap.ui.widgets")
+				local widgets = require("dap.ui.widgets")
 				widgets.centered_float(widgets.frames)
 			end,
 			"Debugger Show Frames",
 		},
 		["<Leader>ds"] = {
 			function()
-        local widgets = require("dap.ui.widgets")
+				local widgets = require("dap.ui.widgets")
 				widgets.centered_float(widgets.scopes)
 			end,
 			"Debugger Show Scopes",
 		},
 	}, dap_n_and_v),
 	v = table_merge({}, dap_n_and_v),
+}
+
+M.lspconfig = {
+	n = {
+		["gh"] = {
+			"<cmd>Lspsaga lsp_finder<CR>",
+			"LSP finder",
+		},
+	},
 }
 
 return M

@@ -1,6 +1,8 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+# Install packages with homebrew
+brew bundle install
 
 ## Alacritty
 ALACRITTY_DIR=~/.config/alacritty
@@ -94,3 +96,10 @@ if [[ -e $STARSHIP_CONFIG ]]; then
   rm $STARSHIP_CONFIG
 fi
 ln -sv $SCRIPT_DIR/starship.toml $STARSHIP_CONFIG
+
+ZSH_DIR=~/.zsh
+if [[ -d $ZSH_DIR ]]; then
+  echo "zsh config dir exists, removing it"
+  rm -rf $ZSH_DIR
+fi
+ln -sv $SCRIPT_DIR/zsh $ZSH_DIR

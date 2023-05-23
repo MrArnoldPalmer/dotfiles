@@ -49,9 +49,6 @@ local plugins = {
 		end,
 		dependencies = {
 			{
-				"rcarriga/nvim-dap-ui",
-			},
-			{
 				"nvim-telescope/telescope-dap.nvim",
 				config = function()
 					require("telescope").load_extension("dap")
@@ -62,9 +59,23 @@ local plugins = {
 			},
 		},
 	},
-  {
-    "folke/trouble.nvim",
-  }
+	{
+		"folke/trouble.nvim",
+	},
+	{
+		"glepnir/lspsaga.nvim",
+		event = "LspAttach",
+		config = function()
+			require("lspsaga").setup({
+				finder = {
+					keys = {
+						vsplit = "<C-v>",
+						split = "<C-x>",
+					},
+				},
+			})
+		end,
+	},
 }
 
 return plugins
