@@ -101,16 +101,63 @@ M.dap = {
 M.lspconfig = {
 	n = {
 		["gh"] = {
-      function()
-        vim.cmd("Lspsaga lsp_finder")
-      end,
-			"LSP finder",
+			function()
+				vim.cmd("Lspsaga lsp_finder")
+			end,
+			"LSP Finder",
 		},
-    ["<leader>o"] = {
-      function()
-        vim.cmd("Lspsaga outline")
-      end
-    },
+		["<leader>o"] = {
+			function()
+				vim.cmd("Lspsaga outline")
+			end,
+			"LSP Outline",
+		},
+	},
+}
+
+M.neotest = {
+	n = {
+		["<leader>tr"] = {
+			function()
+				require("neotest").run.run()
+			end,
+			"Run nearest test",
+		},
+		["<leader>tf"] = {
+			function()
+				require("neotest").run.run(vim.fn.expand("%"))
+			end,
+			"Run tests in file",
+		},
+		["<leader>td"] = {
+			function()
+				require("neotest").run.run({ strategy = "dap" })
+			end,
+			"Debug nearest test",
+		},
+		["<leader>tx"] = {
+			function()
+				require("neotest").run.stop()
+			end,
+			"Stop nearest test",
+		},
+		["<leader>tw"] = {
+			function()
+				require("neotest").run.run({ jestCommand = "jest --watch " })
+			end,
+			"Test watch",
+		},
+	},
+}
+
+M.telescope = {
+	n = {
+		["<leader>fr"] = {
+			function()
+				require("telescope.builtin").resume()
+			end,
+			"Finder resume",
+		},
 	},
 }
 

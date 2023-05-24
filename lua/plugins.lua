@@ -77,13 +77,21 @@ local plugins = {
 		"nvim-neotest/neotest",
 		dependencies = {
 			{ "antoinemadec/FixCursorHold.nvim" },
-      { "rouge8/neotest-rust" },
-      { "nvim-neotest/neotest-jest" },
+			{ "rouge8/neotest-rust" },
+			{ "nvim-neotest/neotest-jest" },
 		},
 		config = function()
 			require("custom.configs.neotest")
 		end,
-    lazy = false,
+		lazy = false,
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup()
+		end,
 	},
 }
 

@@ -17,6 +17,11 @@ dap.adapters.lldb = {
 	end,
 }
 
+dap.adapters.rust = {
+	name = "launch",
+	type = "lldb",
+}
+
 if vim.fn.filereadable(".vscode/launch.json") then
 	require("dap.ext.vscode").load_launchjs(nil, {
 		lldb = { "rust" },

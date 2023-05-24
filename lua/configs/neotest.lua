@@ -1,8 +1,12 @@
-require("neotest").setup({
+local neotest = require("neotest")
+local neotest_rust = require("neotest-rust")
+local neotest_jest = require("neotest-jest")
+
+neotest.setup({
 	adapters = {
-		require("neotest-rust")({
+		neotest_rust({
 			dap_adapter = "lldb",
 		}),
-		require("neotest-jest")({}),
+		neotest_jest({}),
 	},
 })

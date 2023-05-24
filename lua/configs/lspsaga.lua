@@ -11,6 +11,9 @@ require("lspsaga").setup({
 	outline = {
 		keys = keys,
 	},
+	lightbulb = {
+		sign_priority = -1,
+	},
 	ui = {
 		title = false,
 		border = "rounded",
