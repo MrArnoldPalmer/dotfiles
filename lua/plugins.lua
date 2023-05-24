@@ -70,8 +70,20 @@ local plugins = {
 		"glepnir/lspsaga.nvim",
 		event = "LspAttach",
 		config = function()
-      require("custom.configs.lspsaga")
+			require("custom.configs.lspsaga")
 		end,
+	},
+	{
+		"nvim-neotest/neotest",
+		dependencies = {
+			{ "antoinemadec/FixCursorHold.nvim" },
+      { "rouge8/neotest-rust" },
+      { "nvim-neotest/neotest-jest" },
+		},
+		config = function()
+			require("custom.configs.neotest")
+		end,
+    lazy = false,
 	},
 }
 

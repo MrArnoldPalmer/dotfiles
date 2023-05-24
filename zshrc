@@ -94,6 +94,4 @@ fixZsh() {
 	done
 }
 
-# Tell CDK to use finch because I said so
-export CDK_DOCKER=finch
 eval "$(starship init zsh)"
