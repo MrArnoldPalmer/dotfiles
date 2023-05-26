@@ -147,6 +147,12 @@ M.neotest = {
 			end,
 			"Test watch",
 		},
+		["<leader>to"] = {
+			function()
+				require("neotest").summary.toggle()
+			end,
+			"Tests outline",
+		},
 	},
 }
 

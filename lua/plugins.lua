@@ -25,6 +25,7 @@ local plugins = {
 		opts = {
 			ensure_installed = {
 				"rust-analyzer",
+        "rustfmt",
 				"stylua",
 				"typescript-language-server",
 				"codelldb",
