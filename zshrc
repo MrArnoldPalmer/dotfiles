@@ -29,6 +29,8 @@ if [[ ! -d $NVM_DIR ]]; then
 fi
 [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
 [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+# Increase available heap memory to NodeJS
+export NODE_OPTIONS=--max-old-space-size=8192
 
 # Java 8
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home"
@@ -62,10 +64,6 @@ alias vimdiff="nvim -d"
 export EDITOR=nvim
 
 alias zj="zellij"
-
-if [[ `uname` == "Darwin" ]]; then
-  alias docker="finch"
-fi
 
 # CDK Aliases
 # runs an npm script via lerna for a the current module
