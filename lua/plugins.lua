@@ -112,6 +112,31 @@ local plugins = {
 		event = "VeryLazy",
 		opts = {},
 	},
+	{
+		"nvim-telescope/telescope.nvim",
+		opts = {
+			extensions_list = { "themes", "terms", "fzf", "neoclip" },
+		},
+		dependencies = {
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+			},
+			{
+				"AckslD/nvim-neoclip.lua",
+				config = function()
+					require("neoclip").setup()
+				end,
+			},
+		},
+	},
+	{
+		"pwntester/octo.nvim",
+		cmd = "Octo",
+		config = function()
+			require("octo").setup()
+		end,
+	},
 }
 
 return plugins

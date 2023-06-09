@@ -7,13 +7,13 @@ local dap_n_and_v = {
 		function()
 			require("dap.ui.widgets").hover()
 		end,
-		"Debugger Hover",
+		"Debugger hover",
 	},
 	["<leader>dp"] = {
 		function()
 			require("dap.ui.widgets").preview()
 		end,
-		"Debugger Preview",
+		"Debugger preview",
 	},
 }
 
@@ -21,69 +21,69 @@ M.dap = {
 	n = vim.tbl_deep_extend("error", {
 		["<F5>"] = {
 			continue,
-			"Launch Debugger",
+			"Launch debugger",
 		},
 		["<F10>"] = {
 			function()
 				require("dap").step_over()
 			end,
-			"Debugger Step Over",
+			"Debugger step over",
 		},
 		["<F11>"] = {
 			function()
 				require("dap").step_into()
 			end,
-			"Debugger Step Into",
+			"Debugger step into",
 		},
 		["<F12>"] = {
 			function()
 				require("dap").step_out()
 			end,
-			"Debugger Step Out",
+			"Debugger step out",
 		},
 		["<Leader>db"] = {
 			function()
 				require("dap").toggle_breakpoint()
 			end,
-			"Toggle Breakpoint",
+			"Toggle breakpoint",
 		},
 		["<Leader>dB"] = {
 			function()
 				require("dap").set_breakpoint()
 			end,
-			"Set Breakpoint",
+			"Set breakpoint",
 		},
 		["<Leader>lp"] = {
 			function()
 				require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 			end,
-			"Set Log Point",
+			"Set log point",
 		},
 		["<Leader>dr"] = {
 			function()
 				require("dap").repl.open()
 			end,
-			"Debugger Open Repl",
+			"Debugger open repl",
 		},
 		["<Leader>dl"] = {
 			function()
 				require("dap").run_last()
 			end,
-			"Debugger Run Last",
+			"Debugger run last",
 		},
 		["<Leader>df"] = {
 			function()
 				local widgets = require("dap.ui.widgets")
 				widgets.centered_float(widgets.frames)
 			end,
-			"Debugger Show Frames",
+			"Debugger show frames",
 		},
 		["<Leader>ds"] = {
 			function()
 				local widgets = require("dap.ui.widgets")
 				widgets.centered_float(widgets.scopes)
 			end,
-			"Debugger Show Scopes",
+			"Debugger show scopes",
 		},
 	}, dap_n_and_v),
 	v = vim.tbl_deep_extend("error", {}, dap_n_and_v),
@@ -95,13 +95,13 @@ M.lspconfig = {
 			function()
 				vim.cmd("Lspsaga lsp_finder")
 			end,
-			"LSP Finder",
+			"LSP finder",
 		},
 		["<leader>o"] = {
 			function()
 				vim.cmd("Lspsaga outline")
 			end,
-			"LSP Outline",
+			"LSP outline",
 		},
 	},
 }
@@ -159,7 +159,13 @@ M.telescope = {
 			function()
 				require("telescope.builtin").diagnostics()
 			end,
-			"Find Diagnostics",
+			"Find diagnostics",
+		},
+		["<leader>fc"] = {
+			function()
+				require("telescope").extensions.neoclip.default()
+			end,
+			"Find in clipboard",
 		},
 	},
 }
