@@ -17,6 +17,7 @@ local plugins = {
 				"java",
 				"dockerfile",
 				"python",
+				"dap_repl",
 			},
 		},
 	},
@@ -28,7 +29,9 @@ local plugins = {
 				"rustfmt",
 				"stylua",
 				"typescript-language-server",
+				"js-debug-adapter",
 				"codelldb",
+				"lua-language-server",
 			},
 		},
 	},
@@ -61,6 +64,23 @@ local plugins = {
 			},
 			{
 				"theHamsta/nvim-dap-virtual-text",
+				opts = {},
+			},
+			{
+				"LiadOz/nvim-dap-repl-highlights",
+				config = function()
+					require("nvim-dap-repl-highlights").setup()
+				end,
+			},
+			{
+				"rcarriga/cmp-dap",
+				config = function()
+					require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+						sources = {
+							{ name = "dap" },
+						},
+					})
+				end,
 			},
 		},
 	},
@@ -90,9 +110,7 @@ local plugins = {
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup()
-		end,
+		opts = {},
 	},
 }
 

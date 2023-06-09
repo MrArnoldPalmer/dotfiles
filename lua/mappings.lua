@@ -2,15 +2,6 @@ local continue = require("custom.utils.continue")
 
 local M = {}
 
-M.disabled = {
-	n = {
-		["<Leader>b"] = "",
-	},
-	v = {
-		["<Leader>b"] = "",
-	},
-}
-
 local dap_n_and_v = {
 	["<leader>dh"] = {
 		function()
@@ -50,13 +41,13 @@ M.dap = {
 			end,
 			"Debugger Step Out",
 		},
-		["<Leader>b"] = {
+		["<Leader>db"] = {
 			function()
 				require("dap").toggle_breakpoint()
 			end,
 			"Toggle Breakpoint",
 		},
-		["<Leader>B"] = {
+		["<Leader>dB"] = {
 			function()
 				require("dap").set_breakpoint()
 			end,
@@ -163,6 +154,12 @@ M.telescope = {
 				require("telescope.builtin").resume()
 			end,
 			"Finder resume",
+		},
+		["<leader>fd"] = {
+			function()
+				require("telescope.builtin").diagnostics()
+			end,
+			"Find Diagnostics",
 		},
 	},
 }
