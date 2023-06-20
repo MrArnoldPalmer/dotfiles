@@ -32,11 +32,8 @@ fi
 # Increase available heap memory to NodeJS
 export NODE_OPTIONS=--max-old-space-size=8192
 
-# Java 8
-# export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home"
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+# Java
+export JAVA_HOME="$HOMEBREW_PREFIX/Cellar/openjdk/20.0.1/"
 
 # Go
 export GOPATH="$HOME/go"
