@@ -20,6 +20,11 @@ local plugins = {
 				"dap_repl",
 			},
 		},
+		dependencies = {
+			{
+				"LiadOz/nvim-dap-repl-highlights",
+			},
+		},
 	},
 	{
 		"williamboman/mason.nvim",
