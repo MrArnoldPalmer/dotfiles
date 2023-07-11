@@ -61,32 +61,13 @@ alias vimdiff="nvim -d"
 export EDITOR=nvim
 
 alias zj="zellij"
+alias cat="bat"
 
-# CDK Aliases
-# runs an npm script via lerna for a the current module
-alias lr='lerna run --stream --scope $(node -p "require(\"./package.json\").name")'
-
-# runs "yarn build" (build + test) for the current module
-alias lb='lr build'
-alias lt='lr test'
-
-# build up/down
-alias up='~/dev/aws-cdk/scripts/buildup'
-alias down='~/dev/aws-cdk/scripts/builddown'
-
-# runs "yarn watch" for the current module (recommended to run in a separate terminal session):
-alias lw='lr watch'
-
-alias run-superchain='docker run --rm --net=host -it -v $PWD:$PWD -w $PWD superchain'
-alias cdk-local='~/dev/aws-cdk/packages/aws-cdk/bin/cdk'
-alias jsii-local='~/dev/jsii/packages/jsii/bin/jsii'
-
-fixZsh() {
-	for f in $(compaudit)
-	do 
-		sudo chown -R $(whoami):root $f
-		sudo chmod -R 755 $f
-	done
-}
+export BAT_THEME=Catppuccin-mocha
 
 eval "$(starship init zsh)"
+
+if [[ $(uname) == "Darwin" ]]; then
+  export CDK_DOCKER="finch"
+  alias docker="finch"
+fi

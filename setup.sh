@@ -103,3 +103,15 @@ if [[ -d $ZSH_DIR ]]; then
   rm -rf $ZSH_DIR
 fi
 ln -sv $SCRIPT_DIR/zsh $ZSH_DIR
+
+## Misc Tools Dir
+MISC_TOOLS=~/dev/misc
+mkdir $MISC_TOOLS
+
+## Bat Theme
+BAT_THEME_DIR=${MISC_TOOLS}/bat-theme
+git clone git@github.com:catppuccin/bat.git $BAT_THEME_DIR
+mkdir -p "$(bat --config-dir)/themes"
+cp $BAT_THEME_DIR/*.tmTheme "$(bat --config-dir)/themes"
+bat cache --build
+
