@@ -167,6 +167,12 @@ M.telescope = {
 			end,
 			"Find in clipboard",
 		},
+		["<leader>fw"] = {
+			function()
+				require("telescope").extensions.live_grep_args.live_grep_args()
+			end,
+			"Live grep",
+		},
 	},
 }
 
