@@ -148,6 +148,31 @@ local plugins = {
 			require("octo").setup()
 		end,
 	},
+  {
+    'sindrets/diffview.nvim',
+    keys = {
+      {
+        '<leader>gvh',
+        ':DiffviewFileHistory %<CR>',
+        desc = "Diffview history of the current file",
+      },
+      {
+        '<leader>gvo',
+        ':DiffviewOpen -- %<CR>',
+        desc = "Open diffview for the current file",
+      },
+      {
+        '<leader>gvm',
+        ':DiffviewOpen upstream/main %<CR>',
+        desc = "Open diffview  against upstream/main",
+      },
+      {
+        '<leader>gvc',
+        ':DiffviewClose<CR>',
+        desc = "Close diffview",
+      },
+    },
+  },
 }
 
 return plugins

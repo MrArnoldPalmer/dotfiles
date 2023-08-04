@@ -93,7 +93,7 @@ M.lspconfig = {
 	n = {
 		["gh"] = {
 			function()
-				vim.cmd("Lspsaga lsp_finder")
+				vim.cmd("Lspsaga finder")
 			end,
 			"LSP finder",
 		},
