@@ -91,6 +91,7 @@ local plugins = {
 	},
 	{
 		"folke/trouble.nvim",
+		lazy = false,
 	},
 	{
 		"glepnir/lspsaga.nvim",
@@ -142,37 +143,44 @@ local plugins = {
 		},
 	},
 	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("telescope").load_extension("file_browser")
+		end,
+	},
+	{
 		"pwntester/octo.nvim",
 		cmd = "Octo",
 		config = function()
 			require("octo").setup()
 		end,
 	},
-  {
-    'sindrets/diffview.nvim',
-    keys = {
-      {
-        '<leader>gvh',
-        ':DiffviewFileHistory %<CR>',
-        desc = "Diffview history of the current file",
-      },
-      {
-        '<leader>gvo',
-        ':DiffviewOpen -- %<CR>',
-        desc = "Open diffview for the current file",
-      },
-      {
-        '<leader>gvm',
-        ':DiffviewOpen upstream/main %<CR>',
-        desc = "Open diffview  against upstream/main",
-      },
-      {
-        '<leader>gvc',
-        ':DiffviewClose<CR>',
-        desc = "Close diffview",
-      },
-    },
-  },
+	{
+		"sindrets/diffview.nvim",
+		keys = {
+			{
+				"<leader>gvh",
+				":DiffviewFileHistory %<CR>",
+				desc = "Diffview history of the current file",
+			},
+			{
+				"<leader>gvo",
+				":DiffviewOpen -- %<CR>",
+				desc = "Open diffview for the current file",
+			},
+			{
+				"<leader>gvm",
+				":DiffviewOpen upstream/main %<CR>",
+				desc = "Open diffview  against upstream/main",
+			},
+			{
+				"<leader>gvc",
+				":DiffviewClose<CR>",
+				desc = "Close diffview",
+			},
+		},
+	},
 }
 
 return plugins

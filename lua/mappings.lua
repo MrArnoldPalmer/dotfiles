@@ -149,6 +149,12 @@ M.neotest = {
 
 M.telescope = {
 	n = {
+		["<leader>fb"] = {
+			function()
+				require("telescope").extensions.file_browser.file_browser()
+			end,
+			"File Browser",
+		},
 		["<leader>fr"] = {
 			function()
 				require("telescope.builtin").resume()
