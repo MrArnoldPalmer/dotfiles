@@ -31,7 +31,6 @@ local plugins = {
 		opts = {
 			ensure_installed = {
 				"rust-analyzer",
-				"rustfmt",
 				"stylua",
 				"typescript-language-server",
 				"js-debug-adapter",
@@ -88,6 +87,7 @@ local plugins = {
 				end,
 			},
 		},
+		{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
 	},
 	{
 		"folke/trouble.nvim",
