@@ -106,6 +106,24 @@ M.lspconfig = {
 	},
 }
 
+M.rust_tools = {
+  plugin = true,
+  n = {
+    ["K"] = {
+      function()
+        require("rust-tools").hover_actions.hover_actions()
+      end,
+      "Rust LSP Hover With Actions",
+    },
+    ["<leader>a"] = {
+      function()
+        require("rust-tools").code_action_group.code_action_group()
+      end,
+      "Rust Code Action Group",
+    }
+  }
+}
+
 M.neotest = {
 	n = {
 		["<leader>tr"] = {
