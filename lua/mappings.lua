@@ -125,6 +125,7 @@ M.rust_tools = {
 }
 
 M.neotest = {
+  plugin = true,
 	n = {
 		["<leader>tr"] = {
 			function()

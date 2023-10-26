@@ -67,7 +67,7 @@ local plugins = {
 		config = function()
 			require("custom.configs.nvim-dap")
 		end,
-    dependencies = { "nvim-telescope/telescope-dap.nvim" }
+		dependencies = { "nvim-telescope/telescope-dap.nvim" },
 	},
 	{
 		"nvim-telescope/telescope-dap.nvim",
@@ -115,9 +115,9 @@ local plugins = {
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
-			{ "antoinemadec/FixCursorHold.nvim" },
 			{ "rouge8/neotest-rust" },
 			{ "nvim-neotest/neotest-jest" },
+			{ "mfussenegger/nvim-dap" },
 		},
 		config = function()
 			require("custom.configs.neotest")
@@ -147,11 +147,11 @@ local plugins = {
 		config = function()
 			require("neoclip").setup()
 		end,
-    dependencies = { "nvim-telescope/telescope.nvim" }
+		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
 	{
 		"nvim-telescope/telescope-live-grep-args.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" }
+		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
