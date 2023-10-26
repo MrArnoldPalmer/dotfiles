@@ -55,39 +55,51 @@ local plugins = {
 		end,
 	},
 	{
+		"simrat39/rust-tools.nvim",
+		config = function()
+			require("custom.configs.rust-tools")
+		end,
+		dependencies = { "neovim/nvim-lspconfig", "mfussenegger/nvim-dap", "nvim-lua/plenary.nvim" },
+		ft = { "rust" },
+	},
+	{
 		"mfussenegger/nvim-dap",
 		config = function()
 			require("custom.configs.nvim-dap")
 		end,
-		dependencies = {
-			{
-				"nvim-telescope/telescope-dap.nvim",
-				config = function()
-					require("telescope").load_extension("dap")
-				end,
-			},
-			{
-				"theHamsta/nvim-dap-virtual-text",
-				opts = {},
-			},
-			{
-				"LiadOz/nvim-dap-repl-highlights",
-				config = function()
-					require("nvim-dap-repl-highlights").setup()
-				end,
-			},
-			{
-				"rcarriga/cmp-dap",
-				config = function()
-					require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-						sources = {
-							{ name = "dap" },
-						},
-					})
-				end,
-			},
-		},
-		{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+    dependencies = { "nvim-telescope/telescope-dap.nvim" }
+	},
+	{
+		"nvim-telescope/telescope-dap.nvim",
+		dependencies = { "mfussenegger/nvim-dap", "nvim-telescope/telescope.nvim" },
+	},
+	{
+		"theHamsta/nvim-dap-virtual-text",
+		opts = {},
+		dependencies = { "mfussenegger/nvim-dap" },
+	},
+	{
+		"LiadOz/nvim-dap-repl-highlights",
+		config = function()
+			require("nvim-dap-repl-highlights").setup()
+		end,
+		dependencies = { "mfussenegger/nvim-dap" },
+	},
+	{
+		"rcarriga/cmp-dap",
+		config = function()
+			require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+				sources = {
+					{ name = "dap" },
+				},
+			})
+		end,
+		dependencies = { "mfussenegger/nvim-dap" },
+	},
+	{
+		"ellisonleao/glow.nvim",
+		config = true,
+		cmd = "Glow",
 	},
 	{
 		"folke/trouble.nvim",
@@ -121,33 +133,29 @@ local plugins = {
 	{
 		"nvim-telescope/telescope.nvim",
 		opts = {
-			extensions_list = { "themes", "terms", "fzf", "neoclip" },
+			extensions_list = { "themes", "terms", "fzf", "neoclip", "live_grep_args", "file_browser", "dap" },
 		},
 		dependencies = {
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 			},
-			{
-				"AckslD/nvim-neoclip.lua",
-				config = function()
-					require("neoclip").setup()
-				end,
-			},
-			{
-				"nvim-telescope/telescope-live-grep-args.nvim",
-				config = function()
-					require("telescope").load_extension("live_grep_args")
-				end,
-			},
 		},
+	},
+	{
+		"AckslD/nvim-neoclip.lua",
+		config = function()
+			require("neoclip").setup()
+		end,
+    dependencies = { "nvim-telescope/telescope.nvim" }
+	},
+	{
+		"nvim-telescope/telescope-live-grep-args.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" }
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-		config = function()
-			require("telescope").load_extension("file_browser")
-		end,
 	},
 	{
 		"pwntester/octo.nvim",
