@@ -89,7 +89,8 @@ M.dap = {
 	v = vim.tbl_deep_extend("error", {}, dap_n_and_v),
 }
 
-M.lspconfig = {
+M.lspsaga = {
+  plugin = true,
 	n = {
 		["gh"] = {
 			function()
@@ -107,19 +108,18 @@ M.lspconfig = {
 }
 
 M.rust_tools = {
-  plugin = true,
   n = {
     ["K"] = {
       function()
         require("rust-tools").hover_actions.hover_actions()
       end,
-      "Rust LSP Hover With Actions",
+      "LSP Hover With Actions",
     },
     ["<leader>a"] = {
       function()
         require("rust-tools").code_action_group.code_action_group()
       end,
-      "Rust Code Action Group",
+      "Code Action Group",
     }
   }
 }

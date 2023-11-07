@@ -111,6 +111,7 @@ local plugins = {
 		config = function()
 			require("custom.configs.lspsaga")
 		end,
+		dependencies = { "neovim/nvim-lspconfig" },
 	},
 	{
 		"nvim-neotest/neotest",

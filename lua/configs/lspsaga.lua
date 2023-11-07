@@ -1,3 +1,5 @@
+local utils = require("core.utils")
+
 require("lspsaga").setup({
 	finder = {
 		keys = {
@@ -19,3 +21,5 @@ require("lspsaga").setup({
 		border = "rounded",
 	},
 })
+
+utils.load_mappings("lspsaga")
