@@ -90,7 +90,7 @@ M.dap = {
 }
 
 M.lspsaga = {
-  plugin = true,
+	plugin = true,
 	n = {
 		["gh"] = {
 			function()
@@ -108,24 +108,24 @@ M.lspsaga = {
 }
 
 M.rust_tools = {
-  n = {
-    ["K"] = {
-      function()
-        require("rust-tools").hover_actions.hover_actions()
-      end,
-      "LSP Hover With Actions",
-    },
-    ["<leader>a"] = {
-      function()
-        require("rust-tools").code_action_group.code_action_group()
-      end,
-      "Code Action Group",
-    }
-  }
+	n = {
+		["K"] = {
+			function()
+				require("rust-tools").hover_actions.hover_actions()
+			end,
+			"LSP Hover With Actions",
+		},
+		["<leader>a"] = {
+			function()
+				require("rust-tools").code_action_group.code_action_group()
+			end,
+			"Code Action Group",
+		},
+	},
 }
 
 M.neotest = {
-  plugin = true,
+	plugin = true,
 	n = {
 		["<leader>tr"] = {
 			function()
@@ -197,6 +197,25 @@ M.telescope = {
 				require("telescope").extensions.live_grep_args.live_grep_args()
 			end,
 			"Live grep",
+		},
+	},
+}
+
+M.gitlinker = {
+	n = {
+		["<leader>gy"] = {
+			function()
+				require("gitlinker").get_buf_range_url("n")
+			end,
+			"Copy link to code",
+		},
+	},
+	v = {
+		["<leader>gy"] = {
+			function()
+				require("gitlinker").get_buf_range_url("v")
+			end,
+			"Copy link to code",
 		},
 	},
 }
