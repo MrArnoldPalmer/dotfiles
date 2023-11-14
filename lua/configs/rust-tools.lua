@@ -13,7 +13,6 @@ local opts = {
 	server = {
 		on_attach = function(client, bufnr)
 			on_attach(client, bufnr)
-			-- utils.load_mappings("rust_tools", { buffer = bufnr })
 		end,
 		capabilities = capabilities,
 	},
