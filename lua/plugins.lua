@@ -192,9 +192,9 @@ local plugins = {
 	},
 	{
 		"ruifm/gitlinker.nvim",
-    config = function()
-      require("gitlinker").setup()
-    end,
+		config = function()
+			require("gitlinker").setup()
+		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
