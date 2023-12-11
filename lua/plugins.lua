@@ -51,7 +51,6 @@ local plugins = {
 		},
 		config = function()
 			require("plugins.configs.lspconfig")
-			require("custom.configs.lspconfig")
 		end,
 	},
 	{
@@ -61,6 +60,15 @@ local plugins = {
 		end,
 		dependencies = { "neovim/nvim-lspconfig", "mfussenegger/nvim-dap", "nvim-lua/plenary.nvim" },
 		ft = { "rust" },
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		config = function()
+			require("custom.configs.typescript-tools")
+		end,
+		ft = { "typescript", "javascript" },
+		opts = {},
 	},
 	{
 		"mfussenegger/nvim-dap",
