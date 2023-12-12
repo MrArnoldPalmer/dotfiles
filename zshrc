@@ -15,7 +15,7 @@ export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
 
 # ZSH Syntax Highlighting
-source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -63,7 +63,7 @@ export EDITOR=nvim
 alias zj="zellij"
 alias cat="bat"
 
-export BAT_THEME=Catppuccin-mocha
+export BAT_THEME=Catppuccin-latte
 
 eval "$(starship init zsh)"
 
