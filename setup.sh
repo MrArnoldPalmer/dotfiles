@@ -6,7 +6,7 @@ brew bundle install
 
 ## Alacritty
 ALACRITTY_DIR=~/.config/alacritty
-ALACRITTY_CONFIG=${ALACRITTY_DIR}/alacritty.yml
+ALACRITTY_CONFIG=${ALACRITTY_DIR}/alacritty.toml
 if [[ ! -d $ALACRITTY_DIR ]]; then
   echo "alacritty dir doesn't exist, make it!"
   mkdir $ALACRITTY_DIR
@@ -16,7 +16,7 @@ if [[ -e $ALACRITTY_CONFIG ]]; then
   echo "alacritty config exists, remove it!"
   rm $ALACRITTY_CONFIG
 fi
-ln -sv $SCRIPT_DIR/alacritty.yml $ALACRITTY_CONFIG
+ln -sv $SCRIPT_DIR/alacritty.toml $ALACRITTY_CONFIG
 
 ## Nushell
 NUSHELL_DIR=~/.config/nushell

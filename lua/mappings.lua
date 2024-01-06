@@ -17,6 +17,17 @@ local dap_n_and_v = {
 	},
 }
 
+M.custom = {
+	n = {
+		["<leader>E"] = {
+			function()
+				vim.diagnostic.open_float()
+			end,
+			"Show diagnostic float",
+		},
+	},
+}
+
 M.dap = {
 	n = vim.tbl_deep_extend("error", {
 		["<F5>"] = {
