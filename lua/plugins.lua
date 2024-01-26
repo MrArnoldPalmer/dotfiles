@@ -122,18 +122,6 @@ local plugins = {
 		dependencies = { "neovim/nvim-lspconfig" },
 	},
 	{
-		"nvim-neotest/neotest",
-		dependencies = {
-			{ "rouge8/neotest-rust" },
-			{ "nvim-neotest/neotest-jest" },
-			{ "mfussenegger/nvim-dap" },
-		},
-		config = function()
-			require("custom.configs.neotest")
-		end,
-		lazy = false,
-	},
-	{
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
