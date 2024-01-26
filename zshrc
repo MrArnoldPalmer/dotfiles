@@ -22,6 +22,9 @@ source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=$HOME/.toolbox/bin:$PATH
 
+# Add llvm stuff to path, notably lld
+export PATH="$PATH:$HOMEBREW_PREFIX/opt/llvm/bin"
+
 # NVM Configuration
 export NVM_DIR="$HOME/.nvm"
 if [[ ! -d $NVM_DIR ]]; then
