@@ -50,14 +50,9 @@ if [[ -d $NVIM_CACHE_DIR ]]; then
   echo "neovim cache dir exists, remove it!"
   rm -rf $NVIM_CACHE_DIR
 fi
-git clone https://github.com/NvChad/NvChad $NVIM_DIR --depth 1 && nvim
+# git clone https://github.com/NvChad/NvChad $NVIM_DIR --depth 1 && nvim
 
-NVIM_LUA_DIR=${NVIM_DIR}/lua/custom
-if [[ -d $NVIM_LUA_DIR ]]; then
-  echo "neovim lua dir exists, removing it"
-  rm -rf $NVIM_LUA_DIR
-fi
-ln -sv $SCRIPT_DIR/lua $NVIM_LUA_DIR
+ln -sv $SCRIPT_DIR/nvim $NVIM_DIR
 
 ## Tmux
 TMUX_CONFIG=~/.tmux.conf
