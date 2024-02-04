@@ -79,12 +79,6 @@ local plugins = {
 		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
 	{
-		"nvimtools/none-ls.nvim",
-		config = function()
-			require("plugins.configs.none-ls")
-		end,
-	},
-	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
@@ -143,6 +137,9 @@ local plugins = {
 				options = {
 					highlights = require("catppuccin.groups.integrations.bufferline").get(),
 					diagnostics = "nvim_lsp",
+					close_command = function()
+						require("mini.bufremove").delete()
+					end,
 				},
 			})
 		end,
@@ -173,9 +170,18 @@ local plugins = {
 	},
 	{
 		"rcarriga/nvim-notify",
-		init = function()
-			vim.notify = require("notify")
-		end,
+		opts = {
+			timeout = 3000,
+			max_height = function()
+				return math.floor(vim.o.lines * 0.75)
+			end,
+			max_width = function()
+				return math.floor(vim.o.columns * 0.75)
+			end,
+			on_open = function(win)
+				vim.api.nvim_win_set_config(win, { zindex = 100 })
+			end,
+		},
 	},
 	{
 		"AckslD/nvim-neoclip.lua",
@@ -205,6 +211,15 @@ local plugins = {
 		end,
 	},
 	{
+		"rcarriga/nvim-dap-ui",
+		config = function()
+			require("dapui").setup()
+		end,
+		dependencies = {
+			"mfussenegger/nvim-dap",
+		},
+	},
+	{
 		"nvim-telescope/telescope-dap.nvim",
 		dependencies = { "mfussenegger/nvim-dap", "nvim-telescope/telescope.nvim" },
 	},
@@ -212,6 +227,83 @@ local plugins = {
 		"numToStr/Comment.nvim",
 		config = function(_, opts)
 			require("Comment").setup(opts)
+		end,
+	},
+	{
+		"nvim-pack/nvim-spectre",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		build = false,
+		cmd = "Spectre",
+		opts = { open_cmd = "noswapfile vnew" },
+		config = function()
+			require("spectre").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.bufremove",
+		version = "*",
+		config = function()
+			require("mini.bufremove").setup()
+		end,
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = "Trouble",
+		config = function()
+			require("trouble").setup()
+		end,
+	},
+	{
+		"stevearc/conform.nvim",
+		dependencies = { "mason.nvim" },
+		lazy = true,
+		cmd = "ConformInfo",
+		config = function()
+			require("plugins.configs.conform")
+		end,
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+		config = function()
+			require("plugins.configs.noice")
+		end,
+	},
+	{
+		"stevearc/dressing.nvim",
+		lazy = true,
+		init = function()
+			vim.ui.select = function(...)
+				require("lazy").load({ plugins = { "dressing.nvim" } })
+				return vim.ui.select(...)
+			end
+			vim.ui.input = function(...)
+				require("lazy").load({ plugins = { "dressing.nvim" } })
+				return vim.ui.input(...)
+			end
+		end,
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		version = false, -- last release is way too old
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+		},
+		config = function()
+			require("plugins.configs.cmp")
 		end,
 	},
 }

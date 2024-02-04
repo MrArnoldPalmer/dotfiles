@@ -1,24 +1,5 @@
-local dap = require("dap")
-local cargo_inspector = require("utils.cargo-inspector")
-
+local dap, dapui = require("dap"), require("dapui")
 local mason_path = vim.fn.stdpath("data") .. "/mason"
-
-dap.adapters.lldb = {
-	type = "server",
-	port = "${port}",
-	executable = {
-		command = mason_path .. "/bin/codelldb",
-		args = { "--port", "${port}" },
-	},
-	enrich_config = function(config, on_config)
-		-- If the configuration(s) in `launch.json` contains a `cargo` section
-		-- send the configuration off to the cargo_inspector.
-		if config["cargo"] ~= nil then
-			on_config(cargo_inspector(config))
-		end
-	end,
-}
-dap.adapters.codelldb = dap.adapters.lldb
 
 dap.adapters["pwa-node"] = {
 	type = "server",
@@ -26,7 +7,6 @@ dap.adapters["pwa-node"] = {
 	port = "${port}",
 	executable = {
 		command = "node",
-		-- args = {mason_path .. "/bin/js-debug-adapter", "${port}"},
 		args = { mason_path .. "/packages/js-debug-adapter/js-debug/src/dapDebugServer.js", "${port}" },
 	},
 }
@@ -50,9 +30,16 @@ dap.configurations.javascript = {
 
 dap.configurations.typescript = dap.configurations.javascript
 
-if vim.fn.filereadable(".vscode/launch.json") then
-	require("dap.ext.vscode").load_launchjs(nil, {
-		lldb = { "rust" },
-		["pwa-node"] = { "javascript", "typescript" },
-	})
+-- use dapui when debugging
+dap.listeners.before.attach.dapui_config = function()
+	dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+	dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+	dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+	dapui.close()
 end

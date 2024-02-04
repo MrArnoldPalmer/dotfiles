@@ -9,3 +9,23 @@ vim.g.rustaceanvim = function()
 		},
 	}
 end
+
+-- override some generic lsp mappings with RustLsp stuff
+local bufnr = vim.api.nvim_get_current_buf()
+vim.keymap.set("n", "<leader>ca", function()
+	vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+end, { silent = true, buffer = bufnr })
+
+vim.keymap.set("n", "K", function()
+	require("rustaceanvim.hover_actions").hover_actions()
+end, { silent = true, buffer = bufnr })
+
+vim.keymap.set("n", "<F5>", function()
+	local dap = require("dap")
+
+	if dap.session() then
+		dap.continue()
+	else
+		vim.cmd.RustLsp("debuggables") -- supports rust-analyzer's grouping
+	end
+end, { silent = true, buffer = bufnr })

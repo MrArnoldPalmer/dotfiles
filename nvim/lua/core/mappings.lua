@@ -1,4 +1,3 @@
-local continue = require("utils.continue")
 local M = {}
 
 M.general = {
@@ -43,18 +42,19 @@ M.general = {
 			"<cmd>bprevious<cr>",
 			"Goto prev buffer",
 		},
-		-- close buffer
 		["<leader>x"] = {
-			"<cmd>bd<cr>",
-			"Close buffer",
+			function()
+				require("mini.bufremove").delete()
+			end,
+			"Close Buffer",
 		},
 
 		-- format buffer
 		["<leader>fm"] = {
 			function()
-				vim.lsp.buf.format({ async = true })
+				require("conform").format({ async = true, lsp_fallback = true })
 			end,
-			"LSP formatting",
+			"Format Buffer",
 		},
 	},
 
@@ -222,7 +222,9 @@ M.lspconfig = {
 M.dap = {
 	n = {
 		["<F5>"] = {
-			continue,
+			function()
+				require("dap").continue()
+			end,
 			"Launch debugger",
 		},
 		["<F10>"] = {
@@ -251,9 +253,9 @@ M.dap = {
 		},
 		["<Leader>dB"] = {
 			function()
-				require("dap").set_breakpoint()
+				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 			end,
-			"Set breakpoint",
+			"Set breakpoint condition",
 		},
 		["<Leader>lp"] = {
 			function()
@@ -286,23 +288,6 @@ M.dap = {
 				widgets.centered_float(widgets.scopes)
 			end,
 			"Debugger show scopes",
-		},
-	},
-}
-
-M.rustaceanvim = {
-	n = {
-		["K"] = {
-			function()
-				require("rustaceanvim.hover_actions").hover_actions()
-			end,
-			"LSP Hover With Actions",
-		},
-		["<leader>a"] = {
-			function()
-				require("rustaceanvim.commands.code_action_group")()
-			end,
-			"Code Action Group",
 		},
 	},
 }
@@ -357,6 +342,37 @@ M.whichkey = {
 				vim.cmd("WhichKey " .. input)
 			end,
 			"Which-key query lookup",
+		},
+	},
+}
+
+M.spectre = {
+	n = {
+		["<leader>S"] = {
+			function()
+				require("spectre").toggle()
+			end,
+			"Toggle Spectre",
+		},
+		["<leader>sw"] = {
+			function()
+				require("spectre").open_visual({ select_word = true })
+			end,
+			"Search Current Word",
+		},
+		["<leader>sp"] = {
+			function()
+				require("spectre").open_file_search({ select_word = true })
+			end,
+			"Search Current File",
+		},
+	},
+	v = {
+		["<leader>sw"] = {
+			function()
+				require("spectre").open_visual()
+			end,
+			"Search Current Word",
 		},
 	},
 }
