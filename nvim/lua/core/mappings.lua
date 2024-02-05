@@ -87,6 +87,17 @@ M.comment = {
 	},
 }
 
+M.Oil = {
+	n = {
+		["-"] = {
+			function()
+				require("oil").open()
+			end,
+			"Open buffer parent directory",
+		},
+	},
+}
+
 M.lspconfig = {
 	-- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 	n = {

@@ -195,7 +195,12 @@ local plugins = {
 	},
 	{
 		"stevearc/oil.nvim",
-		opts = {},
+		opts = {
+			keymaps = {
+				["<C-v>"] = "actions.select_vsplit",
+				["<C-x>"] = "actions.select_split",
+			},
+		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
@@ -268,11 +273,7 @@ local plugins = {
 		event = "VeryLazy",
 		opts = {},
 		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
 			"rcarriga/nvim-notify",
 		},
 		config = function()
@@ -298,6 +299,7 @@ local plugins = {
 		version = false, -- last release is way too old
 		event = "InsertEnter",
 		dependencies = {
+			"L3MON4D3/LuaSnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
@@ -305,6 +307,21 @@ local plugins = {
 		config = function()
 			require("plugins.configs.cmp")
 		end,
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = {
+			{
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+				end,
+			},
+		},
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
 	},
 }
 

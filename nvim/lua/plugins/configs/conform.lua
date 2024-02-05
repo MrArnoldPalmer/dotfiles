@@ -7,11 +7,6 @@ require("conform").setup({
 		javascript = { { "prettierd", "prettier" } },
 		rust = { "rustfmt" },
 	},
-	format_on_save = {
-		-- These options will be passed to conform.format()
-		timeout_ms = 500,
-		lsp_fallback = true,
-	},
 	formatters = {
 		rustfmt = {
 			prepend_args = { "--edition", "2021" },
