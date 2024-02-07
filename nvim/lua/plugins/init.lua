@@ -28,17 +28,27 @@ local plugins = {
 	},
 	{
 		"williamboman/mason.nvim",
-		config = function()
-			require("mason").setup({
-				ensure_installed = {
-					"rust-analyzer",
-					"stylua",
-					"typescript-language-server",
-					"js-debug-adapter",
-					"codelldb",
-					"lua-language-server",
-				},
-			})
+		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+		opts = {
+			ensure_installed = {
+				"rust-analyzer",
+				"stylua",
+				"typescript-language-server",
+				"js-debug-adapter",
+				"codelldb",
+				"lua-language-server",
+				"prettier",
+				"prettierd",
+			},
+		},
+		config = function(_, opts)
+			require("mason").setup(opts)
+
+			vim.api.nvim_create_user_command("MasonInstallAll", function()
+				if opts.ensure_installed and #opts.ensure_installed > 0 then
+					vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
+				end
+			end, {})
 		end,
 	},
 	{
@@ -51,14 +61,11 @@ local plugins = {
 	},
 	{
 		"mrcjkb/rustaceanvim",
-		config = function()
+		init = function()
 			require("plugins.configs.rustaceanvim")
 		end,
 		version = "^4",
 		ft = { "rust" },
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
 	},
 	{ "nvim-lua/plenary.nvim" },
 	{
@@ -81,10 +88,13 @@ local plugins = {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
 				flavour = "latte",
+				background = {
+					light = "latte",
+					dark = "mocha",
+				},
 				integrations = {
 					gitsigns = true,
 					indent_blankline = {
@@ -147,26 +157,16 @@ local plugins = {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {},
-		config = function()
-			require("ibl").setup()
-		end,
 	},
 	{
 		"folke/which-key.nvim",
 		keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
 		cmd = "WhichKey",
-		config = function(_, opts)
-			require("which-key").setup(opts)
-		end,
 	},
 	{
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
 	},
 	{
 		"rcarriga/nvim-notify",
@@ -189,9 +189,6 @@ local plugins = {
 			{ "kkharji/sqlite.lua", module = "sqlite" },
 			{ "nvim-telescope/telescope.nvim" },
 		},
-		config = function()
-			require("neoclip").setup()
-		end,
 	},
 	{
 		"stevearc/oil.nvim",
@@ -205,9 +202,6 @@ local plugins = {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup()
-		end,
 	},
 	{
 		"mfussenegger/nvim-dap",
@@ -240,24 +234,15 @@ local plugins = {
 		build = false,
 		cmd = "Spectre",
 		opts = { open_cmd = "noswapfile vnew" },
-		config = function()
-			require("spectre").setup()
-		end,
 	},
 	{
 		"echasnovski/mini.bufremove",
 		version = "*",
-		config = function()
-			require("mini.bufremove").setup()
-		end,
 	},
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		cmd = "Trouble",
-		config = function()
-			require("trouble").setup()
-		end,
 	},
 	{
 		"stevearc/conform.nvim",
@@ -303,6 +288,8 @@ local plugins = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"saadparwaiz1/cmp_luasnip",
 		},
 		config = function()
 			require("plugins.configs.cmp")
@@ -321,6 +308,21 @@ local plugins = {
 		opts = {
 			history = true,
 			delete_check_events = "TextChanged",
+		},
+	},
+	{
+		"nvim-neotest/neotest",
+		opts = function()
+			return {
+				adapters = {
+					require("rustaceanvim.neotest"),
+				},
+			}
+		end,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter",
 		},
 	},
 }
