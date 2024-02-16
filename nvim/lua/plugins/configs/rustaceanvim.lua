@@ -3,9 +3,13 @@ vim.g.rustaceanvim = function()
 	local extension_path = mason_path .. "/packages/codelldb/extension"
 	local codelldb_path = mason_path .. "/bin/codelldb"
 	local liblldb_path = extension_path .. "/lldb/lib/liblldb.dylib"
+	local executors = require("rustaceanvim.executors")
 	return {
+		tools = {
+			test_executor = executors.neotest,
+		},
 		server = {
-			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+			-- capabilities = require("cmp_nvim_lsp").default_capabilities(),
 			on_attach = function()
 				-- override some generic lsp mappings with RustLsp stuff
 				local bufnr = vim.api.nvim_get_current_buf()

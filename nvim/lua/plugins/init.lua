@@ -2,6 +2,17 @@ local plugins = {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = {
+			highlight = {
+				enable = true,
+				language_tree = true,
+				disable = function(lang, buf)
+					local max_filesize = 100 * 1024 -- 100 KB
+					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+					if ok and stats and stats.size > max_filesize then
+						return true
+					end
+				end,
+			},
 			ensure_installed = {
 				"vim",
 				"lua",
@@ -19,6 +30,7 @@ local plugins = {
 				"python",
 				"dap_repl",
 			},
+			auto_install = true,
 		},
 		dependencies = {
 			{
@@ -53,7 +65,6 @@ local plugins = {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		lazy = false,
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
 			require("plugins.configs.lspconfig")
@@ -66,6 +77,9 @@ local plugins = {
 		end,
 		version = "^4",
 		ft = { "rust" },
+		dependencies = {
+			"nvim-neotest/neotest",
+		},
 	},
 	{ "nvim-lua/plenary.nvim" },
 	{
@@ -80,6 +94,12 @@ local plugins = {
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 			},
 		},
+	},
+
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 	{
 		"nvim-telescope/telescope-live-grep-args.nvim",
@@ -125,7 +145,6 @@ local plugins = {
 	{ "nvim-tree/nvim-web-devicons" },
 	{
 		"nvim-lualine/lualine.nvim",
-		lazy = false,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			"catppuccin/nvim",
@@ -312,12 +331,12 @@ local plugins = {
 	},
 	{
 		"nvim-neotest/neotest",
-		opts = function()
-			return {
+		config = function()
+			require("neotest").setup({
 				adapters = {
 					require("rustaceanvim.neotest"),
 				},
-			}
+			})
 		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",

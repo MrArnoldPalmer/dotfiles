@@ -105,7 +105,7 @@ M.lspconfig = {
 			function()
 				vim.diagnostic.open_float()
 			end,
-			"Show diagnostic float",
+			"Show diagnostic detail",
 		},
 		["gD"] = {
 			function()
