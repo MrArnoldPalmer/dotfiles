@@ -51,6 +51,8 @@ local plugins = {
 				"lua-language-server",
 				"prettier",
 				"prettierd",
+				"black",
+        "pyright",
 			},
 		},
 		config = function(_, opts)

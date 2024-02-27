@@ -1,3 +1,6 @@
+autoload -U compinit
+compinit
+
 export ZSH_CUSTOM="$HOME/.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
