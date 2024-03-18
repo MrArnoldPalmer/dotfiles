@@ -91,7 +91,7 @@ M.Oil = {
 	n = {
 		["-"] = {
 			function()
-				require("oil").open()
+				require("mini.files").open()
 			end,
 			"Open buffer parent directory",
 		},
