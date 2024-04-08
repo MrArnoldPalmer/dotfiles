@@ -8,41 +8,41 @@ brew bundle install
 ALACRITTY_DIR=~/.config/alacritty
 ALACRITTY_CONFIG=${ALACRITTY_DIR}/alacritty.toml
 mkdir -p $ALACRITTY_DIR
-ln -svF $SCRIPT_DIR/alacritty.toml $ALACRITTY_CONFIG
+ln -svf $SCRIPT_DIR/alacritty.toml $ALACRITTY_CONFIG
 
 ## Nushell
 NUSHELL_DIR=~/.config/nushell
 NUSHELL_CONFIG=${NUSHELL_DIR}/config.nu
 NUSHELL_ENV_CONFIG=${NUSHELL_DIR}/env.nu
 mkdir -p $NUSHELL_DIR
-ln -svF $SCRIPT_DIR/nu/config.nu $NUSHELL_CONFIG
-ln -svF $SCRIPT_DIR/nu/env.nu $NUSHELL_ENV_CONFIG
+ln -svf $SCRIPT_DIR/nu/config.nu $NUSHELL_CONFIG
+ln -svf $SCRIPT_DIR/nu/env.nu $NUSHELL_ENV_CONFIG
 
 ## Neovim
 NVIM_DIR=~/.config/nvim
 NVIM_CACHE_DIR=~/.local/share/nvim
-ln -svF $SCRIPT_DIR/nvim $NVIM_DIR
+ln -svf $SCRIPT_DIR/nvim $NVIM_DIR
 
 ## Tmux
 TMUX_CONFIG=~/.tmux.conf
-ln -svF $SCRIPT_DIR/tmux.conf $TMUX_CONFIG
+ln -svf $SCRIPT_DIR/tmux.conf $TMUX_CONFIG
 
 ## Zellij
 ZELLIJ_DIR=~/.config/zellij
 ZELLIJ_CONFIG=${ZELLIJ_DIR}/config.kdl
 mkdir -p $ZELLIJ_DIR
-ln -svF $SCRIPT_DIR/zellij.kdl $ZELLIJ_CONFIG
+ln -svf $SCRIPT_DIR/zellij.kdl $ZELLIJ_CONFIG
 
 ## ZSH
 ZSH_CONFIG=~/.zshrc
-ln -svF $SCRIPT_DIR/zshrc $ZSH_CONFIG
+ln -svf $SCRIPT_DIR/zshrc $ZSH_CONFIG
 
 ## Starship
 STARSHIP_CONFIG=~/.config/starship.toml
-ln -svF $SCRIPT_DIR/starship.toml $STARSHIP_CONFIG
+ln -svf $SCRIPT_DIR/starship.toml $STARSHIP_CONFIG
 
 ZSH_DIR=~/.zsh
-ln -svF $SCRIPT_DIR/zsh $ZSH_DIR
+ln -svf $SCRIPT_DIR/zsh $ZSH_DIR
 
 ## Misc Tools Dir
 MISC_TOOLS=~/dev/misc
