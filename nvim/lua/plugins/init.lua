@@ -238,6 +238,7 @@ local plugins = {
 		end,
 		dependencies = {
 			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
 		},
 	},
 	{
@@ -342,6 +343,7 @@ local plugins = {
 			})
 		end,
 		dependencies = {
+			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",

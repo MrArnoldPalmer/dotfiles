@@ -77,3 +77,7 @@ if [[ $(uname) == "Darwin" ]]; then
   export CDK_DOCKER="finch"
   alias docker="finch"
 fi
+
+if [ -f ~/.zsh_aliases ]; then
+    source ~/.zsh_aliases
+fi
