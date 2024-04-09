@@ -21,8 +21,6 @@ export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
 source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=$HOME/.toolbox/bin:$PATH
 
 # Add llvm stuff to path, notably lld
@@ -39,8 +37,8 @@ fi
 export NODE_OPTIONS=--max-old-space-size=8192
 
 # Java
-export JAVA_HOME="$HOMEBREW_PREFIX/Cellar/openjdk/20.0.1/"
-
+# export JAVA_HOME="$HOMEBREW_PREFIX/Cellar/openjdk/20.0.1/"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home"
 # Go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
