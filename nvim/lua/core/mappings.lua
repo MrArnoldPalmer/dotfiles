@@ -90,9 +90,7 @@ M.comment = {
 M.Oil = {
 	n = {
 		["-"] = {
-			function()
-				require("mini.files").open()
-			end,
+			"<CMD>Oil --float<CR>",
 			"Open buffer parent directory",
 		},
 	},

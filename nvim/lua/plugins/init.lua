@@ -211,17 +211,16 @@ local plugins = {
 			{ "nvim-telescope/telescope.nvim" },
 		},
 	},
-	-- {
-	-- 	"stevearc/oil.nvim",
-	-- 	opts = {
-	-- 		keymaps = {
-	-- 			["<C-v>"] = "actions.select_vsplit",
-	-- 			["<C-x>"] = "actions.select_split",
-	-- 		},
-	-- 	},
-	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- },
-	{ "echasnovski/mini.nvim", version = "*" },
+	{
+		"stevearc/oil.nvim",
+		opts = {
+			keymaps = {
+				["<C-v>"] = "actions.select_vsplit",
+				["<C-x>"] = "actions.select_split",
+			},
+		},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
 	{
 		"lewis6991/gitsigns.nvim",
 	},

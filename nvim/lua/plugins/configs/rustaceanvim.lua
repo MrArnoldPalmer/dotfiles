@@ -43,6 +43,14 @@ vim.g.rustaceanvim = function()
 					vim.cmd.RustLsp({ "runnables", bang = true })
 				end, { silent = true, buffer = bufnr, desc = "Rerun last" })
 			end,
+			default_settings = {
+				-- rust-analyzer language server configuration
+				["rust-analyzer"] = {
+					files = {
+						excludeDirs = { "build" },
+					},
+				},
+			},
 		},
 		dap = {
 			adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb_path, liblldb_path),
