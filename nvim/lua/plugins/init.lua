@@ -112,7 +112,7 @@ local plugins = {
 		name = "catppuccin",
 		config = function()
 			require("catppuccin").setup({
-				flavour = "latte",
+				flavour = "auto",
 				background = {
 					light = "latte",
 					dark = "mocha",
@@ -143,6 +143,21 @@ local plugins = {
 			})
 			vim.cmd.colorscheme("catppuccin")
 		end,
+	},
+	{
+		"f-person/auto-dark-mode.nvim",
+		config = {
+			update_interval = 1000,
+			set_dark_mode = function()
+				vim.api.nvim_set_option("background", "dark")
+			end,
+			set_light_mode = function()
+				vim.api.nvim_set_option("background", "light")
+			end,
+		},
+		dependencies = {
+			"catppuccin/nvim",
+		},
 	},
 	{ "nvim-tree/nvim-web-devicons" },
 	{
