@@ -10,6 +10,10 @@ ALACRITTY_CONFIG=${ALACRITTY_DIR}/alacritty.toml
 mkdir -p $ALACRITTY_DIR
 ln -svf $SCRIPT_DIR/alacritty.toml $ALACRITTY_CONFIG
 
+## Wezterm
+WEZTERM_DIR=~/.config/wezterm
+ln -svf $SCRIPT_DIR/wezterm $WEZTERM_DIR
+
 ## Nushell
 NUSHELL_DIR=~/.config/nushell
 NUSHELL_CONFIG=${NUSHELL_DIR}/config.nu

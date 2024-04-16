@@ -45,6 +45,7 @@ brew "urlview"
 brew "watchman"
 brew "zellij"
 brew "zsh-syntax-highlighting"
+cask "wezterm"
 cask "finch" if OS.mac?
 cask "alacritty" if OS.mac?
 cask "rectangle" if OS.mac?

@@ -8,9 +8,4 @@ require("conform").setup({
 		markdown = { { "prettierd", "prettier" } },
 		rust = { "rustfmt" },
 	},
-	formatters = {
-		rustfmt = {
-			prepend_args = { "--edition", "2021" },
-		},
-	},
 })
