@@ -78,7 +78,7 @@ local plugins = {
 			require("plugins.configs.rustaceanvim")
 		end,
 		version = "^4",
-		ft = { "rust" },
+		lazy = false,
 		dependencies = {
 			"nvim-neotest/neotest",
 		},

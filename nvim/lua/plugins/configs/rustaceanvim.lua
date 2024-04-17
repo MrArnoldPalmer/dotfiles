@@ -31,7 +31,7 @@ vim.g.rustaceanvim = function()
 					end
 				end, { silent = true, buffer = bufnr, desc = "Launch Debugger" })
 
-				vim.keymap.set("n", "S-F5>", function()
+				vim.keymap.set("n", "<F17>", function()
 					vim.cmd.RustLsp({ "debuggables", bang = true })
 				end, { silent = true, buffer = bufnr, desc = "Rerun Debugger" })
 
@@ -39,7 +39,7 @@ vim.g.rustaceanvim = function()
 					vim.cmd.RustLsp("runnables")
 				end, { silent = true, buffer = bufnr, desc = "Run" })
 
-				vim.keymap.set("n", "<S-F6>", function()
+				vim.keymap.set("n", "<F18>", function()
 					vim.cmd.RustLsp({ "runnables", bang = true })
 				end, { silent = true, buffer = bufnr, desc = "Rerun last" })
 			end,
