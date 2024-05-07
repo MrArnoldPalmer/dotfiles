@@ -79,6 +79,7 @@ local plugins = {
 		end,
 		version = "^4",
 		lazy = false,
+		ft = { "rust" },
 		dependencies = {
 			"nvim-neotest/neotest",
 		},
@@ -146,7 +147,7 @@ local plugins = {
 	},
 	{
 		"f-person/auto-dark-mode.nvim",
-		config = {
+		opts = {
 			update_interval = 1000,
 			set_dark_mode = function()
 				vim.api.nvim_set_option("background", "dark")

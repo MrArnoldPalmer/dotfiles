@@ -44,6 +44,7 @@ brew "tmux"
 brew "urlview"
 brew "watchman"
 brew "zellij"
+brew "zola"
 brew "zsh-syntax-highlighting"
 cask "wezterm"
 cask "finch" if OS.mac?
