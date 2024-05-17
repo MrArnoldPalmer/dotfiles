@@ -177,7 +177,7 @@ local plugins = {
 	},
 	{
 		"akinsho/bufferline.nvim",
-		version = "*",
+		-- version = "*",
 		dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin" },
 		config = function()
 			require("bufferline").setup({
@@ -230,9 +230,11 @@ local plugins = {
 	{
 		"stevearc/oil.nvim",
 		opts = {
+			default_file_explorer = true,
 			keymaps = {
 				["<C-v>"] = "actions.select_vsplit",
 				["<C-x>"] = "actions.select_split",
+        ["q"] = "actions.close",
 			},
 		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },

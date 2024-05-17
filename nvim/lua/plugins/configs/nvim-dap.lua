@@ -30,7 +30,8 @@ dap.configurations.javascript = {
 
 dap.configurations.typescript = dap.configurations.javascript
 -- Automatically set breakpoints on uncaught exceptions
-dap.set_exception_breakpoints({"uncaught"})
+-- dap.set_exception_breakpoints({"uncaught"})
+dap.defaults.fallback.exception_breakpoints = {"uncaught"}
 
 -- use dapui when debugging
 dap.listeners.before.attach.dapui_config = function()
