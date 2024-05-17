@@ -26,7 +26,6 @@ end
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
-opt.clipboard = "unnamedplus"
 opt.cursorline = true
 opt.hidden = false
 
