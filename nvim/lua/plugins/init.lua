@@ -94,7 +94,7 @@ local plugins = {
 			{ "nvim-lua/plenary.nvim" },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+				build = "make",
 			},
 		},
 	},
@@ -234,7 +234,7 @@ local plugins = {
 			keymaps = {
 				["<C-v>"] = "actions.select_vsplit",
 				["<C-x>"] = "actions.select_split",
-        ["q"] = "actions.close",
+				["q"] = "actions.close",
 			},
 		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -363,6 +363,11 @@ local plugins = {
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {},
+		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
 	},
 }
 

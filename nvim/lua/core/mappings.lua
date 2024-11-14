@@ -90,7 +90,7 @@ M.comment = {
 M.Oil = {
 	n = {
 		["-"] = {
-			"<CMD>Oil --float<CR>",
+			"<CMD>Oil<CR>",
 			"Open buffer parent directory",
 		},
 	},

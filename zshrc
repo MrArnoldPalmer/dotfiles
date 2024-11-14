@@ -38,7 +38,8 @@ export NODE_OPTIONS=--max-old-space-size=8192
 
 # Java
 # export JAVA_HOME="$HOMEBREW_PREFIX/Cellar/openjdk/20.0.1/"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home"
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home
 # Go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
