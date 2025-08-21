@@ -87,10 +87,12 @@ M.comment = {
 	},
 }
 
-M.Oil = {
+M.claudeCode = {
 	n = {
-		["-"] = {
-			"<CMD>Oil<CR>",
+		["<leader>cc"] = {
+      function()
+        vim.cmd[[ClaudeCode]]
+      end,
 			"Open buffer parent directory",
 		},
 	},

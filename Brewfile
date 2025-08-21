@@ -46,7 +46,6 @@ brew "watchman"
 brew "zellij"
 brew "zola"
 brew "zsh-syntax-highlighting"
-cask "wezterm"
 cask "finch" if OS.mac?
 cask "alacritty" if OS.mac?
 cask "rectangle" if OS.mac?

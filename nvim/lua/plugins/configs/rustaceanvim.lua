@@ -52,8 +52,8 @@ vim.g.rustaceanvim = function()
 				},
 			},
 		},
-		dap = {
-			adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb_path, liblldb_path),
-		},
+		-- dap = {
+		-- 	adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb_path, liblldb_path),
+		-- },
 	}
 end

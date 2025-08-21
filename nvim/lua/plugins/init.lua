@@ -35,6 +35,9 @@ local plugins = {
 		dependencies = {
 			{
 				"LiadOz/nvim-dap-repl-highlights",
+				config = function()
+					require("nvim-dap-repl-highlights").setup()
+				end,
 			},
 		},
 	},
@@ -77,7 +80,7 @@ local plugins = {
 		init = function()
 			require("plugins.configs.rustaceanvim")
 		end,
-		version = "^4",
+		version = "^6",
 		lazy = false,
 		ft = { "rust" },
 		dependencies = {
@@ -88,7 +91,7 @@ local plugins = {
 	{
 		"nvim-telescope/telescope.nvim",
 		opts = {
-			extensions_list = { "fzf", "live_grep_args" },
+			extensions_list = { "fzf", "live_grep_args", "dap" },
 		},
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
@@ -182,7 +185,7 @@ local plugins = {
 		config = function()
 			require("bufferline").setup({
 				options = {
-					highlights = require("catppuccin.groups.integrations.bufferline").get(),
+					highlights = require("catppuccin.groups.integrations.bufferline").get_theme(),
 					diagnostics = "nvim_lsp",
 					close_command = function()
 						require("mini.bufremove").delete()
@@ -228,16 +231,13 @@ local plugins = {
 		},
 	},
 	{
-		"stevearc/oil.nvim",
-		opts = {
-			default_file_explorer = true,
-			keymaps = {
-				["<C-v>"] = "actions.select_vsplit",
-				["<C-x>"] = "actions.select_split",
-				["q"] = "actions.close",
-			},
+		"greggh/claude-code.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- Required for git operations
 		},
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("claude-code").setup()
+		end,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -367,7 +367,7 @@ local plugins = {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		opts = {},
-		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 	},
 }
 
