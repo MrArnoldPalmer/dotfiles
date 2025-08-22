@@ -30,4 +30,16 @@ lspconfig.lua_ls.setup({
 	end,
 })
 
-lspconfig.pyright.setup({})
+lspconfig.basedpyright.setup({
+    settings = {
+        basedpyright = {
+            -- Basic settings for analysis
+            analysis = {
+                typeCheckingMode = 'strict', -- or 'strict', 'off'
+                diagnosticMode = 'workspace', -- or 'openFilesOnly'
+                useLibraryCodeForTypes = true,
+                autoSearchPaths = true,
+            },
+        },
+    },
+})
