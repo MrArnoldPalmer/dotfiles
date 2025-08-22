@@ -14,6 +14,10 @@ ln -svf $SCRIPT_DIR/alacritty.toml $ALACRITTY_CONFIG
 WEZTERM_DIR=~/.config/wezterm
 ln -svf $SCRIPT_DIR/wezterm $WEZTERM_DIR
 
+## Ghostty
+GHOSTTY_DIR=~/.config/ghostty
+ln -svf $SCRIPT_DIR/ghostty $GHOSTTY_DIR
+
 ## Nushell
 NUSHELL_DIR=~/.config/nushell
 NUSHELL_CONFIG=${NUSHELL_DIR}/config.nu
