@@ -10,6 +10,12 @@ ALACRITTY_CONFIG=${ALACRITTY_DIR}/alacritty.toml
 mkdir -p $ALACRITTY_DIR
 ln -svf $SCRIPT_DIR/alacritty.toml $ALACRITTY_CONFIG
 
+## Alacritty
+CLAUDE_DIR=~/.claude
+CLAUDE_CONFIG=${CLAUDE_DIR}/settings.json
+mkdir -p $CLAUDE_DIR
+ln -svf $SCRIPT_DIR/claude_settings.json $CLAUDE_CONFIG
+
 ## Wezterm
 WEZTERM_DIR=~/.config/wezterm
 ln -svf $SCRIPT_DIR/wezterm $WEZTERM_DIR
