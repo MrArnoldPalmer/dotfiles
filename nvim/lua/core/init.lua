@@ -37,6 +37,7 @@ g.clipboard = {
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
+opt.fixeol = false
 
 -- opt.clipboard = opt.clipboard + "unnamedplus"
 opt.clipboard = "unnamedplus"
