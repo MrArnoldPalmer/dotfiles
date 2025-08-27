@@ -70,6 +70,36 @@ export EDITOR=nvim
 alias zj="zellij"
 alias cat="bat"
 
+# SSH port forwarding function
+sshfwd() {
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: sshfwd <port> <hostname> [remote_port]"
+        echo "Example: sshfwd 8000 myserver"
+        echo "Example: sshfwd 8000 myserver 3000"
+        return 1
+    fi
+    
+    local host_port=$1
+    local hostname=$2
+    local remote_port=${3:-$1}  # Use host_port if remote_port not specified
+    
+    echo "Forwarding localhost:${host_port} -> ${hostname}:${remote_port}"
+    ssh -L ${host_port}:127.0.0.1:${remote_port} ${hostname}
+}
+
+# Autocomplete function for sshfwd
+_sshfwd() {
+    local context state line
+    
+    _arguments \
+        '1:port number:' \
+        '2:hostname:_ssh_hosts' \
+        '3:remote port number:'
+}
+
+# Register the completion function
+compdef _sshfwd sshfwd
+
 eval "$(starship init zsh)"
 
 if [[ $(uname) == "Darwin" ]]; then
@@ -141,4 +171,13 @@ if [ -z "${_mise_cmd_not_found:-}" ]; then
             return 127
         fi
     }
+fi
+
+## use zellij because I said so
+if [[ -z "$ZELLIJ" ]]; then
+    zellij attach -c base
+
+    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+        exit
+    fi
 fi
