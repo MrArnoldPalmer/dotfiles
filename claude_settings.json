@@ -1,8 +1,8 @@
 {
   "env": {
     "AWS_PROFILE": "fes-pdx-6",
-    "ANTHROPIC_MODEL": "anthropic.claude-sonnet-4-20250514-v1:0",
+    "ANTHROPIC_MODEL": "us.anthropic.claude-sonnet-4-20250514-v1:0",
     "ANTHROPIC_SMALL_FAST_MODEL": "anthropic.claude-3-5-haiku-20241022-v1:0",
-    "CLAUDE_CODE_USE_BEDROCK": 1
+    "CLAUDE_CODE_USE_BEDROCK": true
   }
 }
