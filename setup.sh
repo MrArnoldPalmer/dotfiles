@@ -22,7 +22,8 @@ ln -svf $SCRIPT_DIR/wezterm $WEZTERM_DIR
 
 ## Ghostty
 GHOSTTY_DIR=~/.config/ghostty
-ln -svf $SCRIPT_DIR/ghostty $GHOSTTY_DIR
+GHOSTTY_CONFIG=${GHOSTTY_DIR}/config
+ln -svf $SCRIPT_DIR/ghostty/config $GHOSTTY_CONFIG
 
 ## Nushell
 NUSHELL_DIR=~/.config/nushell
