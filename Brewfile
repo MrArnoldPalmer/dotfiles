@@ -51,3 +51,4 @@ cask "alacritty" if OS.mac?
 cask "rectangle" if OS.mac?
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
+brew "lazygit"
