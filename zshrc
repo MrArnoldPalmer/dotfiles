@@ -172,12 +172,3 @@ if [ -z "${_mise_cmd_not_found:-}" ]; then
         fi
     }
 fi
-
-## use zellij because I said so
-if [[ -z "$ZELLIJ" ]]; then
-    zellij attach -c base
-
-    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
-        exit
-    fi
-fi
