@@ -28,13 +28,6 @@ export PATH=$HOME/.toolbox/bin:$PATH
 # Add llvm stuff to path, notably lld
 export PATH="$PATH:$HOMEBREW_PREFIX/opt/llvm/bin"
 
-# NVM Configuration
-export NVM_DIR="$HOME/.nvm"
-if [[ ! -d $NVM_DIR ]]; then
-  mkdir $NVM_DIR
-fi
-[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
-[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 # Increase available heap memory to NodeJS
 export NODE_OPTIONS=--max-old-space-size=8192
 
@@ -45,17 +38,6 @@ export JAVA_HOME="$HOMEBREW_PREFIX/Cellar/openjdk@17/17.0.15"
 # Go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
-
-# Python
-# alias python=/usr/local/bin/python3
-# alias pip=/usr/local/bin/python3
-# PyEnv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-fi
 
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
@@ -73,18 +55,36 @@ alias cat="bat"
 # SSH port forwarding function
 sshfwd() {
     if [[ $# -lt 2 ]]; then
-        echo "Usage: sshfwd <port> <hostname> [remote_port]"
+        echo "Usage: sshfwd <port1[,port2,...]> <hostname> [remote_port1[,remote_port2,...]]"
         echo "Example: sshfwd 8000 myserver"
         echo "Example: sshfwd 8000 myserver 3000"
+        echo "Example: sshfwd 8000,8001,8002 myserver"
+        echo "Example: sshfwd 8000,8001 myserver 3000,3001"
         return 1
     fi
     
-    local host_port=$1
+    local ports=$1
     local hostname=$2
-    local remote_port=${3:-$1}  # Use host_port if remote_port not specified
+    local remote_ports=${3:-$1}
     
-    echo "Forwarding localhost:${host_port} -> ${hostname}:${remote_port}"
-    ssh -L ${host_port}:127.0.0.1:${remote_port} ${hostname}
+    # Split ports and remote_ports by comma
+    local -a host_port_array=(${(s/,/)ports})
+    local -a remote_port_array=(${(s/,/)remote_ports})
+    
+    # Build SSH command with multiple -L flags
+    local ssh_cmd="ssh"
+    local i=1
+    
+    for host_port in "${host_port_array[@]}"; do
+        local remote_port=${remote_port_array[$i]:-$host_port}
+        echo "Forwarding localhost:${host_port} -> ${hostname}:${remote_port}"
+        ssh_cmd="${ssh_cmd} -L ${host_port}:127.0.0.1:${remote_port}"
+        ((i++))
+    done
+    
+    ssh_cmd="${ssh_cmd} ${hostname}"
+    echo "Running: ${ssh_cmd}"
+    eval $ssh_cmd
 }
 
 # Autocomplete function for sshfwd
