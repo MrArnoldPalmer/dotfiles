@@ -26,6 +26,14 @@ GHOSTTY_CONFIG=${GHOSTTY_DIR}/config
 mkdir -p $GHOSTTY_DIR
 ln -svf $SCRIPT_DIR/ghostty/config $GHOSTTY_CONFIG
 
+## Ghostty Theme
+GHOSTTY_THEME_DIR=${GHOSTTY_DIR}/themes
+mkdir -p $GHOSTTY_THEME_DIR
+TEMP_DIR=$(mktemp -d)
+curl -L https://github.com/catppuccin/ghostty/archive/main.tar.gz | tar -xz -C $TEMP_DIR
+cp $TEMP_DIR/ghostty-main/themes/* $GHOSTTY_THEME_DIR/
+rm -rf $TEMP_DIR
+
 ## Nushell
 NUSHELL_DIR=~/.config/nushell
 NUSHELL_CONFIG=${NUSHELL_DIR}/config.nu
