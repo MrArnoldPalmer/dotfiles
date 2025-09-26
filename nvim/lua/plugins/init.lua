@@ -185,10 +185,11 @@ local plugins = {
 		"akinsho/bufferline.nvim",
 		-- version = "*",
 		dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin" },
+    after = "catppuccin",
 		config = function()
 			require("bufferline").setup({
 				options = {
-					highlights = require("catppuccin.groups.integrations.bufferline").get_theme(),
+          highlights = require("catppuccin.special.bufferline").get_theme(),
 					diagnostics = "nvim_lsp",
 					close_command = function()
 						require("mini.bufremove").delete()
