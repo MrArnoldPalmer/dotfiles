@@ -548,3 +548,4 @@ def-env pyenv [command, ...args] {
 
 # Starship Prompt
 source ~/.cache/starship/init.nu
+source $"($nu.home-path)/.cargo/env.nu"

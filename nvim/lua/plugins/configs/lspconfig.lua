@@ -35,7 +35,7 @@ lspconfig('basedpyright', {
         basedpyright = {
             -- Basic settings for analysis
             analysis = {
-                typeCheckingMode = 'strict', -- or 'strict', 'off'
+                typeCheckingMode = 'basic', -- or 'strict', 'off'
                 diagnosticMode = 'workspace', -- or 'openFilesOnly'
                 useLibraryCodeForTypes = true,
                 autoSearchPaths = true,
@@ -43,3 +43,4 @@ lspconfig('basedpyright', {
         },
     },
 })
+vim.lsp.enable('basedpyright')

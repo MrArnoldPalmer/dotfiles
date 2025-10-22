@@ -194,3 +194,7 @@ if [ -z "${_mise_cmd_not_found:-}" ]; then
         fi
     }
 fi
+
+export PATH=$HOME/.toolbox/bin:$PATH
+export NODE_PATH="$(dirname `mise exec node -- which node`)"
+export PATH=$NODE_PATH:$PATH
