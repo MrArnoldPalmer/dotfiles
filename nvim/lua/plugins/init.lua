@@ -235,15 +235,6 @@ local plugins = {
 		},
 	},
 	{
-		"greggh/claude-code.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- Required for git operations
-		},
-		config = function()
-			require("claude-code").setup()
-		end,
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 	},
 	{
@@ -277,10 +268,14 @@ local plugins = {
 		cmd = "Spectre",
 		opts = { open_cmd = "noswapfile vnew" },
 	},
-	{
-		"echasnovski/mini.bufremove",
-		version = "*",
-	},
+  {
+    'nvim-mini/mini.nvim',
+    version = '*',
+    config = function()
+      require("mini.bufremove").setup({})
+      require("mini.files").setup({})
+    end,
+  },
   {
     "folke/trouble.nvim",
     opts = {},
@@ -358,7 +353,6 @@ local plugins = {
 		version = false, -- last release is way too old
 		event = "InsertEnter",
 		dependencies = {
-			"L3MON4D3/LuaSnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
@@ -368,21 +362,6 @@ local plugins = {
 		config = function()
 			require("plugins.configs.cmp")
 		end,
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = {
-			{
-				"rafamadriz/friendly-snippets",
-				config = function()
-					require("luasnip.loaders.from_vscode").lazy_load()
-				end,
-			},
-		},
-		opts = {
-			history = true,
-			delete_check_events = "TextChanged",
-		},
 	},
 	{
 		"nvim-neotest/neotest",

@@ -389,4 +389,15 @@ M.spectre = {
 	},
 }
 
+M.minifiles = {
+  n = {
+    ["<leader>-"] = {
+      function()
+        MiniFiles.open()
+      end,
+      "Open Files",
+    },
+  },
+}
+
 return M
