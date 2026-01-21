@@ -55,7 +55,7 @@ local plugins = {
 				"prettier",
 				"prettierd",
 				"black",
-        "basedpyright",
+        "pyrefly",
 			},
 		},
 		config = function(_, opts)

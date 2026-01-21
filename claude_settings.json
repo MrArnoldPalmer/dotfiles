@@ -1,28 +1,38 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(tree:*)",
-      "Bash(find:*)",
-      "Edit",
-      "Bash(bb:*)",
-      "Bash(bre:*)",
-      "Bash(bte:*)"
-    ],
-    "deny": [],
-    "ask": []
-  },
-  "editorMode": "vim",
   "env": {
-    "AWS_PROFILE": "fes-pdx-6",
+    "AWS_PROFILE": "inference",
     "AWS_REGION": "us-west-2",
-    "ANTHROPIC_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-5-20251101-v1:0",
     "ANTHROPIC_SMALL_FAST_MODEL": "anthropic.claude-haiku-4-5-20251001-v1:0",
-    "CLAUDE_CODE_USE_BEDROCK": true,
-    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "8192",
+    "CLAUDE_CODE_USE_BEDROCK": "true",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "16000",
     "MAX_THINKING_TOKENS": "1024",
     "DISABLE_BUG_COMMAND": "1",
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_TELEMETRY": "1",
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
-  }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(brazil-build:*)",
+      "Bash(brazil-runtime-exec:*)",
+      "Bash(brazil-test-exec:*)",
+      "Bash(bb:*)",
+      "Bash(bre:*)",
+      "Bash(bte:*)"
+    ],
+    "deny": [
+      "Bash(git add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git pull:*)",
+      "Bash(git commit:*)"
+    ],
+    "ask": []
+  },
+  "alwaysThinkingEnabled": true,
+  "editorMode": "vim"
 }
