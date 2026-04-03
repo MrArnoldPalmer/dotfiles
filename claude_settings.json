@@ -25,14 +25,13 @@
       "Bash(bre:*)",
       "Bash(bte:*)"
     ],
-    "deny": [
-      "Bash(git add:*)",
-      "Bash(git checkout:*)",
-      "Bash(git pull:*)",
-      "Bash(git commit:*)"
-    ],
+    "deny": [],
     "ask": []
   },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
   "alwaysThinkingEnabled": true,
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "skipDangerousModePermissionPrompt": true
 }
