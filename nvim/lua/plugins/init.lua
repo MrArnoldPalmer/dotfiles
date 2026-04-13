@@ -119,6 +119,7 @@ local plugins = {
 		name = "catppuccin",
 		config = function()
 			require("catppuccin").setup({
+        auto_integrations = true,
 				flavour = "auto",
 				background = {
 					light = "latte",
@@ -148,7 +149,7 @@ local plugins = {
 					which_key = true,
 				},
 			})
-			vim.cmd.colorscheme("catppuccin")
+			vim.cmd.colorscheme("catppuccin-nvim")
 		end,
 	},
 	{
@@ -163,20 +164,21 @@ local plugins = {
 			end,
 		},
 		dependencies = {
-			"catppuccin/nvim",
+			"catppuccin",
 		},
 	},
 	{ "nvim-tree/nvim-web-devicons" },
 	{
 		"nvim-lualine/lualine.nvim",
+    after = "catppuccin",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
-			"catppuccin/nvim",
+			"catppuccin",
 		},
 		config = function()
 			require("lualine").setup({
 				options = {
-					theme = "catppuccin",
+					theme = "catppuccin-nvim",
 				},
 			})
 		end,
