@@ -9,6 +9,37 @@ end)()
 
 opt.clipboard = "unnamedplus"
 
+-- Remote/headless hosts (e.g. over ssh in herdr) have no native clipboard, and
+-- nvim only auto-enables OSC 52 when 'clipboard' is empty. Copy via OSC 52 so
+-- the terminal sets the system clipboard. herdr doesn't answer OSC 52 reads, so
+-- paste returns the last copy (use the terminal's paste for system text).
+local has_native_clipboard = vim.fn.has("mac") == 1
+	or is_wsl
+	or vim.env.TMUX ~= nil
+	or vim.env.DISPLAY ~= nil
+	or vim.env.WAYLAND_DISPLAY ~= nil
+if not has_native_clipboard then
+	local osc52 = require("vim.ui.clipboard.osc52")
+	local last_copy = {}
+	local function copy(reg)
+		local send = osc52.copy(reg)
+		return function(lines, regtype)
+			last_copy[reg] = { lines, regtype }
+			send(lines)
+		end
+	end
+	local function paste(reg)
+		return function()
+			return last_copy[reg] or { {}, "v" }
+		end
+	end
+	g.clipboard = {
+		name = "OSC 52",
+		copy = { ["+"] = copy("+"), ["*"] = copy("*") },
+		paste = { ["+"] = paste("+"), ["*"] = paste("*") },
+	}
+end
+
 --- Lots of stuff I stole from NvChad ---
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3 -- global statusline
