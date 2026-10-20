@@ -133,11 +133,6 @@ if [ -f ~/.zsh_aliases ]; then
     source ~/.zsh_aliases
 fi
 
-# Claude code Amazon Bedrock
-export ANTHROPIC_MODEL='us.anthropic.claude-3-7-sonnet-20250219-v1:0'
-export ANTHROPIC_SMALL_FAST_MODEL='us.anthropic.claude-3-5-haiku-20241022-v1:0'
-export CLAUDE_CODE_USE_BEDROCK=1
-
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
 
