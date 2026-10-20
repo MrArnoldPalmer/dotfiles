@@ -119,7 +119,9 @@ local plugins = {
 		name = "catppuccin",
 		config = function()
 			require("catppuccin").setup({
-        auto_integrations = true,
+				auto_integrations = true,
+				-- Follows 'background', which nvim 0.11+ keeps in sync with the
+				-- terminal's light/dark reports (DEC mode 2031); no plugin needed.
 				flavour = "auto",
 				background = {
 					light = "latte",
@@ -151,21 +153,6 @@ local plugins = {
 			})
 			vim.cmd.colorscheme("catppuccin-nvim")
 		end,
-	},
-	{
-		"f-person/auto-dark-mode.nvim",
-		opts = {
-			update_interval = 1000,
-			set_dark_mode = function()
-				vim.api.nvim_set_option("background", "dark")
-			end,
-			set_light_mode = function()
-				vim.api.nvim_set_option("background", "light")
-			end,
-		},
-		dependencies = {
-			"catppuccin",
-		},
 	},
 	{ "nvim-tree/nvim-web-devicons" },
 	{

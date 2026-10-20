@@ -51,6 +51,12 @@ ln -svf $SCRIPT_DIR/nvim $NVIM_DIR
 TMUX_CONFIG=~/.tmux.conf
 ln -svf $SCRIPT_DIR/tmux.conf $TMUX_CONFIG
 
+## Herdr
+HERDR_DIR=~/.config/herdr
+HERDR_CONFIG=${HERDR_DIR}/config.toml
+mkdir -p $HERDR_DIR
+ln -svf $SCRIPT_DIR/herdr/config.toml $HERDR_CONFIG
+
 ## Zellij
 ZELLIJ_DIR=~/.config/zellij
 ZELLIJ_CONFIG=${ZELLIJ_DIR}/config.kdl

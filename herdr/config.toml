@@ -1,0 +1,50 @@
+# herdr configuration — keybindings mirror ../tmux.conf (+ tmux-pain-control).
+# Herdr defaults are kept alongside the tmux-style keys where they don't clash.
+onboarding = false
+
+[keys]
+# tmux: set -g prefix C-Space
+prefix = "ctrl+space"
+
+# Session / workspace (tmux: d detach, $ rename-session, ( ) prev/next session)
+detach = ["prefix+q", "prefix+d"]
+rename_workspace = ["prefix+shift+w", "prefix+$"]
+previous_workspace = "prefix+("
+next_workspace = "prefix+)"
+
+# Tabs = tmux windows (c, n, p, 1..9 match herdr defaults)
+rename_tab = ["prefix+shift+t", "prefix+comma"]   # tmux: ,
+close_tab = ["prefix+shift+x", "prefix+ampersand"] # tmux: &
+move_tab_previous = "prefix+<"                     # pain-control: <
+move_tab_next = "prefix+>"                         # pain-control: >
+
+# Splits (tmux: " and %; pain-control: - _ | \)
+split_horizontal = ["prefix+minus", "prefix+double_quote", "prefix+_"]
+split_vertical = ["prefix+v", "prefix+percent", "prefix+|", "prefix+backslash"]
+
+# Pane focus (pain-control: h/j/k/l and C-h/C-j/C-k/C-l)
+focus_pane_left = ["prefix+h", "prefix+ctrl+h"]
+focus_pane_down = ["prefix+j", "prefix+ctrl+j"]
+focus_pane_up = ["prefix+k", "prefix+ctrl+k"]
+focus_pane_right = ["prefix+l", "prefix+ctrl+l"]
+last_pane = "prefix+semicolon"                     # tmux: ;
+
+# Pane resize (pain-control: H/J/K/L); resize mode stays on prefix+r
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+
+# Pane swap moves off shift+hjkl (herdr default) to make room for resize
+swap_pane_left = "prefix+ctrl+shift+h"
+swap_pane_down = "prefix+ctrl+shift+j"
+swap_pane_up = "prefix+ctrl+shift+k"
+swap_pane_right = "prefix+ctrl+shift+l"
+
+# Follow the host terminal's light/dark appearance, matching nvim's
+# catppuccin flavour = "auto" (light = latte, dark = mocha).
+[theme]
+name = "catppuccin"
+auto_switch = true
+light_name = "catppuccin-latte"
+dark_name = "catppuccin"
