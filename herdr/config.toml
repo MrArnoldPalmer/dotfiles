@@ -41,6 +41,13 @@ swap_pane_down = "prefix+ctrl+shift+j"
 swap_pane_up = "prefix+ctrl+shift+k"
 swap_pane_right = "prefix+ctrl+shift+l"
 
+# Navigate mode (prefix+w): j/k walk the workspace list; pane up/down move to
+# ctrl+j/k. h/l (and left/right arrows) still move between panes.
+navigate_workspace_up = ["k", "up"]
+navigate_workspace_down = ["j", "down"]
+navigate_pane_up = "ctrl+k"
+navigate_pane_down = "ctrl+j"
+
 # Follow the host terminal's light/dark appearance, matching nvim's
 # catppuccin flavour = "auto" (light = latte, dark = mocha).
 [theme]
