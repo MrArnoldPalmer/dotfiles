@@ -26,7 +26,7 @@ export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
 
 # ZSH Syntax Highlighting
-source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
+source ~/.zsh/catppuccin-zsh-syntax-highlighting.zsh
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH=$HOME/.toolbox/bin:$PATH
