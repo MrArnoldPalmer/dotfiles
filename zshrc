@@ -11,6 +11,14 @@ compinit
 
 export ZSH_CUSTOM="$HOME/.zsh"
 
+# Vi mode explicitly: zsh only infers it from $EDITOR inherited at startup (set
+# below, too late), so shells started without it (e.g. herdr panes) got emacs.
+# Before fzf so its bindings land in the vi keymaps; quick Esc into normal mode.
+bindkey -v
+export KEYTIMEOUT=1
+# Keep emacs-mode ^R history search in insert mode (fzf overrides it when present).
+bindkey -M viins '^R' history-incremental-search-backward
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Add ~/.bin to path
