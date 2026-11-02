@@ -1,5 +1,3 @@
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 brew "bat"
 brew "capnp"
 brew "deno"
@@ -48,6 +46,4 @@ brew "zsh-syntax-highlighting"
 cask "finch" if OS.mac?
 cask "alacritty" if OS.mac?
 cask "rectangle" if OS.mac?
-cask "font-fira-code"
-cask "font-fira-code-nerd-font"
 brew "lazygit"
