@@ -9,15 +9,21 @@ end)()
 
 opt.clipboard = "unnamedplus"
 
--- Remote/headless hosts (e.g. over ssh in herdr) have no native clipboard, and
--- nvim only auto-enables OSC 52 when 'clipboard' is empty. Copy via OSC 52 so
--- the terminal sets the system clipboard. herdr doesn't answer OSC 52 reads, so
--- paste returns the last copy (use the terminal's paste for system text).
+-- Fall back to OSC 52 when no clipboard tool is available: remote/headless
+-- hosts (e.g. over ssh in herdr), or WSL without win32yank.exe (e.g. nvim in
+-- herdr in Windows Terminal). nvim only auto-enables OSC 52 when 'clipboard' is
+-- empty, so set it explicitly; the terminal then sets the system clipboard.
+-- herdr doesn't answer OSC 52 reads, so paste reads the Windows clipboard on
+-- WSL, and otherwise returns the last copy (use the terminal's paste for
+-- system text).
+local function has(exe)
+	return vim.fn.executable(exe) == 1
+end
 local has_native_clipboard = vim.fn.has("mac") == 1
-	or is_wsl
 	or vim.env.TMUX ~= nil
-	or vim.env.DISPLAY ~= nil
-	or vim.env.WAYLAND_DISPLAY ~= nil
+	or (is_wsl and has("win32yank.exe"))
+	or (vim.env.WAYLAND_DISPLAY ~= nil and has("wl-copy"))
+	or (vim.env.DISPLAY ~= nil and (has("xclip") or has("xsel")))
 if not has_native_clipboard then
 	local osc52 = require("vim.ui.clipboard.osc52")
 	local last_copy = {}
@@ -28,13 +34,39 @@ if not has_native_clipboard then
 			send(lines)
 		end
 	end
+	local function windows_paste()
+		local res = vim.system({
+			"powershell.exe",
+			"-NoLogo",
+			"-NoProfile",
+			"-NonInteractive",
+			"-Command",
+			"[Console]::OutputEncoding = [Text.Encoding]::UTF8; "
+				.. "$c = Get-Clipboard -Raw; if ($c) { [Console]::Out.Write($c.Replace(\"`r\", \"\")) }",
+		}, { text = true }):wait()
+		if res.code ~= 0 then
+			return nil
+		end
+		return vim.split(res.stdout or "", "\n", { plain = true })
+	end
 	local function paste(reg)
 		return function()
+			if is_wsl and has("powershell.exe") then
+				local lines = windows_paste()
+				if lines then
+					-- Reuse the regtype if this is still our own last copy.
+					local last = last_copy[reg]
+					if last and vim.deep_equal(last[1], lines) then
+						return last
+					end
+					return lines
+				end
+			end
 			return last_copy[reg] or { {}, "v" }
 		end
 	end
 	g.clipboard = {
-		name = "OSC 52",
+		name = is_wsl and "OSC 52 + powershell" or "OSC 52",
 		copy = { ["+"] = copy("+"), ["*"] = copy("*") },
 		paste = { ["+"] = paste("+"), ["*"] = paste("*") },
 	}
