@@ -1,5 +1,32 @@
 #!/bin/bash
 
+# Install homebrew
+if ! command -v brew &> /dev/null; then
+    echo "Homebrew not found. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    # Identify the correct binary location based on system architecture
+    if [[ "$(uname)" == "Darwin" ]]; then
+        if [[ "$(uname -m)" == "arm64" ]]; then
+            BREW_PATH="/opt/homebrew/bin/brew"
+        else
+            BREW_PATH="/usr/local/bin/brew"
+        fi
+
+        # Determine the user's default shell configuration file
+        SHELL_RC="$HOME/.zprofile"
+        [[ "$SHELL" == */bash ]] && SHELL_RC="$HOME/.bash_profile"
+
+        # Dynamically append the Homebrew initialization code to the configuration file
+        echo "Adding Homebrew to PATH in $SHELL_RC..."
+        (echo; echo "eval \"\$($BREW_PATH shellenv)\"") >> "$SHELL_RC"
+        eval "$($BREW_PATH shellenv)"
+    fi
+else
+    echo "Homebrew is already installed: $(brew --version | head -n 1)"
+fi
+
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 # Install packages with homebrew
 brew bundle install
